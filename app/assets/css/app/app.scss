@@ -1,0 +1,112 @@
+body {
+	font-size: 16px;
+}
+
+.ui.menu.site-menu {
+	background-image: -webkit-linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+	background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+	background-repeat: no-repeat;
+
+	font-size: 1.1em;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+footer, .last-modified {
+	margin-top: 20px;
+	color: #777;
+	font-size: 0.8em;
+	text-align: center;
+
+	p { margin: 0 } // nested paragraphs in footer
+}
+
+#markdown-toc { // ul
+	min-width: 200px;
+	margin-left: 20px;
+	padding: 10px;
+	float: right;
+	background-color: #f4f7f8;
+	font-size: 12px;
+	list-style-type: none;
+
+	ul {
+		padding: 0;
+		list-style-type: none;
+	}
+
+	li {
+		padding-top: 5px;
+		li { padding-left: 20px }
+	}
+}
+
+#editor, .md-preview {
+	height: 500px;
+	border: 1px dotted #555;
+}
+
+.md-preview {
+	overflow-y: scroll;
+}
+
+// fix invisible ace scrollbar, not investigated yet.
+.ace_scrollbar.ace_scrollbar-v { width: auto !important; }
+
+.md {
+	h1, h2, h3, h4, h5, h6 { color: #446e9b }
+	h1 { font-size: 36px }
+	h2 { font-size: 30px }
+	h3 { font-size: 24px }
+	h4 { font-size: 20px }
+	h5 { font-size: 16px }
+	h6 { font-size: 16px }
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	pre {
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		background-color: #f5f5f5;
+	}
+
+	blockquote {
+		margin-left: 0;
+		padding: 10px 0 10px 10px;
+		border-left: 5px solid #999;
+	}
+
+	code {
+		background-color: #fee9cc;
+	}
+
+	.code {
+		.line-numbers {
+			padding-right: 10px;
+			color: #aaa;
+		}
+	}
+
+	.XXcode {
+		background-color: #222;
+		color: #eee;
+
+		// ruby
+		.key { color: #f0f }
+		.constant { color: #83fe75 }
+		.comment { color: #0ff }
+		.keyword { color: #5bd6bd }
+		.class { color: #83fe75  }
+		.content { color: #f0f }
+		.instance-variable { color: #0ff }
+
+		// C
+		.preprocessor { color: #5bd6bd }
+		.include { color: #f0f }
+
+		// haml
+		.tag { color: #ff0 }
+	}
+}

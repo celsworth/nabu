@@ -1,0 +1,12 @@
+- if user.is_admin?
+	%a.ui.icon.button.red{style: 'position: fixed; top: 10px; right: 10px', href: "/p/#{@page.name}/edit"}
+		%i.cogs.icon
+
+- title @pv&.display_title
+
+.md~ @pv&.render_html
+
+%p.last-modified
+	Last modified:
+	%time.js-timeago{title: @pv.created_at, datetime: @pv.created_at.iso8601}
+		= @pv.created_at

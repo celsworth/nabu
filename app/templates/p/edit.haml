@@ -1,0 +1,54 @@
+.ui.stackable.grid
+	.sixteen.wide.column
+		%form.ui.form#js-edit-form{action: "/p/#{@page.name}/edit", method: 'post'}
+			= csrf_tag
+
+			%textarea#js-hidden-ta{name: 'content'}
+
+			.fields
+				.two.wide.field
+					%button.ui.primary.button{name: 'save'} Save
+				.fourteen.wide.field
+					%input{type: 'text', placeholder: 'Title', name: 'display_title', value: @pv&.display_title}
+
+	.seven.wide.column
+		-# don't leave an empty line under :preserve or it ends up getting
+		-# appending to Ace's buffer and being saved!
+		#editor<
+			:preserve
+				#{@pv && CGI.escapeHTML(@pv.content)}
+	.nine.wide.column
+		.md-preview.md~ @pv&.render_html
+
+
+%script{type: 'text/javascript', src: '/dist/ace-builds/src-min/ace.js'}
+:javascript
+	/* set height of editor and preview to window height */
+	$('.md-preview, #editor').height($(window).height() - 150);
+
+	$('#js-hidden-ta').hide();
+
+	var editor = ace.edit("editor");
+	//editor.setTheme("ace/theme/monokai");
+	editor.getSession().setMode("ace/mode/markdown");
+	editor.getSession().setUseWrapMode(true);
+	editor.renderer.setShowGutter(false);
+	var updateTimeout;
+	editor.on('input', function(e) {
+		if (!updateTimeout) {
+			updateTimeout = setTimeout(function() {
+				$('#js-hidden-ta').val(editor.getSession().getValue());
+				$.ajax({
+					method: 'POST',
+					url: '/p/preview',
+					data: $('#js-edit-form').serialize()
+				});
+				updateTimeout = null;
+			}, 500);
+		}
+	});
+
+	// on save, copy editor contents into textarea for submission
+	$('#js-edit-form').submit(function(){
+		$('#js-hidden-ta').val(editor.getSession().getValue());
+	});

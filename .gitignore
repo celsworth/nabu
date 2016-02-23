@@ -1,0 +1,4 @@
+.sass-cache
+*.swp
+public/assets/
+Gemfile.lock
