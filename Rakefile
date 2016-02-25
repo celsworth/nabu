@@ -22,14 +22,6 @@ task :console => :boot do
 	Pry.start
 end
 
-# Documentation task
-require 'yard'
-YARD::Rake::YardocTask.new do |t|
-	t.files   = %w(app/**/*.rb lib/**/*.rb config/**/*.rb - README.md TODO.md SRP.md)
-	t.options = ['--protected', '--private', '--verbose']
-	t.stats_options = ['--list-undoc', '--compact']
-end
-
 namespace :db do
 	desc 'Load the seed data from db/seeds.rb'
 	task :seed => :boot do
