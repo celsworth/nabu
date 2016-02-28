@@ -78,6 +78,19 @@ footer, .last-modified {
 		border-left: 5px solid #999;
 	}
 
+	table {
+		width: 100%;
+
+		thead, tfoot {
+			background-color: #f5f5f5;
+		}
+
+		th, td {
+			padding: 10px;
+			border: 1px solid #ddd;
+		}
+	}
+
 	code {
 		background-color: #fee9cc;
 	}
