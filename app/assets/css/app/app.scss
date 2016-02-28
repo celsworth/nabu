@@ -1,4 +1,5 @@
 body {
+	// override Semantic-UI 14px font size
 	font-size: 16px;
 }
 
@@ -7,7 +8,6 @@ body {
 	background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
 	background-repeat: no-repeat;
 
-	font-size: 1.1em;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -23,11 +23,21 @@ footer, .last-modified {
 #markdown-toc { // ul
 	min-width: 200px;
 	margin-left: 20px;
-	padding: 10px;
+	padding: 0;
 	float: right;
 	background-color: #f4f7f8;
 	font-size: 12px;
 	list-style-type: none;
+
+	a {
+		display: block;
+		padding: 5px 10px;
+
+		&:hover {
+			background-color: #eee;
+			text-decoration: none;
+		}
+	}
 
 	ul {
 		padding: 0;
@@ -35,8 +45,14 @@ footer, .last-modified {
 	}
 
 	li {
-		padding-top: 5px;
-		li { padding-left: 20px }
+		padding: 0;
+
+		// successively further indent smaller headers.
+		// this is kind of icky, need to find a cleaner way.
+		// h1 not in TOC. h2 has no indent.
+		li a { padding-left: 25px } // h3
+		li li a { padding-left: 50px } // h4
+		li li li a { padding-left: 75px } // h5
 	}
 }
 
