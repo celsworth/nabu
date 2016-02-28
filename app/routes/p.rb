@@ -4,10 +4,11 @@ class WebCMS
 		r.is 'preview' do
 			response.headers['Content-Type'] = 'text/javascript'
 			cpv = CmsPageVersion.new(content: r.params['content'])
-			"$('#preview').html(#{cpv.render_html.to_json});"
+			"$('.md-preview').html(#{cpv.render_html.to_json});"
 		end
 
 		r.on :pagename do |pagename|
+
 			# TODO: caching
 			@page = CmsPage[type: 'page', name: pagename] || CmsPage.new(type: 'page', name: pagename)
 			@pv = @page&.latest_visible(user)
