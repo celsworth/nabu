@@ -22,6 +22,13 @@ task :console => :boot do
 	Pry.start
 end
 
+desc 'Run scss-lint'
+task :scss_lint do
+	require 'scss_lint'
+	require 'scss_lint/cli'
+	SCSSLint::CLI.new.run(['app/assets/css/app/app.scss'])
+end
+
 namespace :db do
 	desc 'Load the seed data from db/seeds.rb'
 	task :seed => :boot do
