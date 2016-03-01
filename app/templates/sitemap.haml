@@ -1,0 +1,22 @@
+- title 'Sitemap'
+
+.md
+	%h1 Sitemap
+
+	%p
+		All existing pages.
+
+	%ul{style: 'list-style-type: none; padding: 0;'}
+		- @sitemap.all do |page|
+			%li{style: 'margin-bottom: 8px'}
+				%a{href: "/p/#{page.name}"}= page.name
+
+				%br
+
+				-# we're using a #published dataset so this is safe
+				= page.latest_published.display_title
+				&mdash;
+				= page.latest_published.content.length
+				bytes, modified
+				%time.js-timeago{datetime: page.latest_published.created_at.iso8601}
+					= page.latest_published.created_at
