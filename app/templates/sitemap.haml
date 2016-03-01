@@ -6,9 +6,9 @@
 	%p
 		All existing pages.
 
-	%ul{style: 'list-style-type: none; padding: 0;'}
+	%ul.sitemap
 		- @sitemap.all do |page|
-			%li{style: 'margin-bottom: 8px'}
+			%li
 				%a{href: "/p/#{page.name}"}= page.name
 
 				%br
