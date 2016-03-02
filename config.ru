@@ -2,7 +2,7 @@
 require File.expand_path '../config/boot', __FILE__
 
 LOGGER.debug "LOAD ".ansi(:yellow, :bold) + 'app/app.rb' do
-	Unreloader.require('app/app.rb'){|f| 'WebCMS' }
+	Unreloader.require('app/app.rb'){|f| 'Nabu' }
 end
 
 run Unreloader

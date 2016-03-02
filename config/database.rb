@@ -14,8 +14,8 @@ Sequel.extension :pg_inet_ops
 
 # Master +Sequel::Database+ object. All models inherit this.
 DB = Sequel.connect adapter: 'postgres',
-	hostname: 'localhost', database: 'webcms',
-	username: 'webcms', password: 'webcms',
+	hostname: 'localhost', database: 'nabu',
+	username: 'nabu', password: 'nabu',
 	max_connections: 50
 
 DB.extension :null_dataset

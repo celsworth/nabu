@@ -10,7 +10,7 @@ module Sequel
 
 		# :nodoc:
 		def method_missing(meth, *params)
-			if c = caller(1).find { |c| c.match(/webcms/) }
+			if c = caller(1).find { |c| c.match(/nabu/) }
 				m = c.match(/^(.+?):(\d+)(?::in `(.*)')?/)
 				f = m[1].gsub(/.*app\//, '').gsub(/.*cds\//, '')
 				l = '[%s:%s] ' % [ f.ansi(:magenta, :bold), m[2].ansi(:magenta, :bold) ]

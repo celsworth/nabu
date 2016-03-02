@@ -1,4 +1,4 @@
-class WebCMS
+class Nabu
 
 	# return a User object for the current session's user
 	# currently returns a User.new if no user found

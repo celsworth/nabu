@@ -1,11 +1,11 @@
 require 'roda'
 
-class WebCMS < Roda
+class Nabu < Roda
 
 	use Cae::Logger::Middleware
 	use BetterErrors::Middleware if defined? BetterErrors
 
-	use Rack::Session::Cookie, key: 'webcms.session', secret: 'RAAAAH'
+	use Rack::Session::Cookie, key: 'nabu.session', secret: 'RAAAAH'
 
 
 	plugin :assets, {

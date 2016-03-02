@@ -1,4 +1,4 @@
-class WebCMS
+class Nabu
 
 	route 'p' do |r|
 		r.is 'preview' do

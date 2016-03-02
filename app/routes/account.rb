@@ -1,4 +1,4 @@
-class WebCMS
+class Nabu
 
 	route 'account' do |r|
 		r.on 'login' do

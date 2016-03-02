@@ -22,7 +22,7 @@ require 'better_errors' if dev
 
 require 'rack/unreloader'
 Unreloader = Rack::Unreloader.new(reload: dev, logger: dev && LOGGER) do
-	WebCMS
+	Nabu
 end
 def reload!() Unreloader.reloader.reload! end
 

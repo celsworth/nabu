@@ -1,4 +1,4 @@
-class WebCMS
+class Nabu
 
 	route 'sitemap' do |r|
 
