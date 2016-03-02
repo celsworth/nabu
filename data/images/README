@@ -1,0 +1,2 @@
+Images linked to on CMS pages can live in here, then be accessible
+at /images as per the symlink from the public webroot.

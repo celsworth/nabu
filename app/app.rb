@@ -26,7 +26,7 @@ class WebCMS < Roda
 	plugin :padrino_render,
 		engine: 'haml',
 		views:  'app/templates', layout: 'layouts/application'
-	plugin :static, %w(/dist /favicon.ico /icons),
+	plugin :static, %w(/dist /favicon.ico /images),
 		header_rules: [ [:all, {'Cache-Control' => 'private, max-age=3600'}] ]
 	plugin :status_handler
 
