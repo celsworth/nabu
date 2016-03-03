@@ -96,14 +96,14 @@ footer, .last-modified {
 	h1 {
 		display: block;
 		margin: 0;
-		padding: 5px;
+		padding: 5px 8px;
 		font-size: 14px;
 		font-variant: small-caps;
 	}
 
 	ul {
 		margin: 0;
-		padding: 5px;
+		padding: 5px 8px;
 		list-style-type: none;
 
 		li {
@@ -117,16 +117,16 @@ footer, .last-modified {
 		color: #060;
 
 		h1 {
-			background-color: #6d6;
+			background-color: #5b6;
 		}
 	}
 
 	&.no {
-		background-color: #d99;
+		background-color: #c99;
 		color: #700;
 
 		h1 {
-			background-color: #d66;
+			background-color: #b56;
 		}
 	}
 }
@@ -154,7 +154,8 @@ footer, .last-modified {
 	blockquote {
 		margin-left: 0;
 		padding: 10px 0 10px 10px;
-		border-left: 5px solid #999;
+		border-left: 4px solid #999;
+		color: #999;
 	}
 
 	table {
