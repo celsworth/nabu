@@ -51,17 +51,17 @@
 			%p
 				- subdomain = SecureRandom.hex[0..5]
 				- email = "chris@#{subdomain}.cae.me.uk"
-				Copyright &copy;
-				2014-#{Time.now.year} Chris Elsworth
-				%a{href: "mailto:#{email}"} &lt;#{email}&gt;
+				Copyright &copy; Chris Elsworth
+				%a{href: "mailto:#{email}"} &lt;#{email}&gt;.
+
+				Some Rights Reserved.
 
 			%p
 				%a{href: '/sitemap'} Sitemap.
 
 				Powered by
-				%a{href: '//github.com/celsworth/nabu'} Nabu.
+				%a{href: '/p/projects.nabu'} Nabu.
 
-				Some Rights Reserved.
 
 		:javascript
 			$('body').timeago();
