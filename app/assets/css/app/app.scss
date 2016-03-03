@@ -11,6 +11,15 @@ body {
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 
+// external links. first rule matches protocol-relative links, second
+// matches absolutes (which I only use if a site specifically doesn't do SSL)
+a[href^='//'], a[href^='http'] {
+	padding-left: 12px;
+	background-image: linear-gradient(transparent, transparent), url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%3E%3Cpath%20fill%3D%22%23fff%22%20stroke%3D%22%2306c%22%20d%3D%22M1.5%204.518h5.982V10.5H1.5z%22%2F%3E%3Cpath%20d%3D%22M5.765%201H11v5.39L9.427%207.937l-1.31-1.31L5.393%209.35l-2.69-2.688%202.81-2.808L4.2%202.544z%22%20fill%3D%22%2306f%22%2F%3E%3Cpath%20d%3D%22M9.995%202.004l.022%204.885L8.2%205.07%205.32%207.95%204.09%206.723l2.882-2.88-1.85-1.852z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E);
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
 footer, .last-modified {
 	margin-top: 20px;
 	color: #777;
@@ -76,6 +85,51 @@ footer, .last-modified {
 
 // fix invisible ace scrollbar, not investigated yet.
 .ace_scrollbar.ace_scrollbar-v { width: auto !important; }
+
+.who-am-i {
+	min-width: 130px;
+	margin-left: 10px;
+	float: right;
+	font-size: 12px;
+	text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.5);
+
+	h1 {
+		display: block;
+		margin: 0;
+		padding: 5px;
+		font-size: 14px;
+		font-variant: small-caps;
+	}
+
+	ul {
+		margin: 0;
+		padding: 5px;
+		list-style-type: none;
+
+		li {
+			//display: inline;
+			//&:after { content: ', '};
+		}
+	}
+
+	&.yes {
+		background-color: #9d9;
+		color: #060;
+
+		h1 {
+			background-color: #6d6;
+		}
+	}
+
+	&.no {
+		background-color: #d99;
+		color: #700;
+
+		h1 {
+			background-color: #d66;
+		}
+	}
+}
 
 .md {
 	h1, h2, h3, h4, h5, h6 { color: #446e9b }
