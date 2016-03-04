@@ -1,12 +1,5 @@
 class Tag < Sequel::Model
-	many_to_many :cms_pages
-
-	dataset_module do
-		def complete_name(q)
-			column = :name
-			where("? % ?", column, q).or(Sequel.ilike(column, "#{q}%"))
-		end
-	end
+	many_to_many :cms_pages, order: :name
 
 	def validate
 		super

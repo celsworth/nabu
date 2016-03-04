@@ -70,7 +70,8 @@ footer, .last-modified {
 	list-style-type: none;
 
 	li {
-		margin-bottom: 8px
+		margin-bottom: 12px;
+		background-color: #f8f8f8;
 	}
 }
 
@@ -79,9 +80,7 @@ footer, .last-modified {
 	border: 1px dotted #555;
 }
 
-.md-preview {
-	overflow-y: scroll;
-}
+.md-preview { overflow-y: scroll }
 
 // fix invisible ace scrollbar, not investigated yet.
 .ace_scrollbar.ace_scrollbar-v { width: auto !important; }
@@ -108,31 +107,24 @@ footer, .last-modified {
 		margin: 0;
 		padding: 5px 8px;
 		list-style-type: none;
-
-		li {
-			//display: inline;
-			//&:after { content: ', '};
-		}
 	}
 
 	&.yes {
 		background-color: #9d9;
 		color: #060;
 
-		h1 {
-			background-color: #5b6;
-		}
+		h1 { background-color: #5b6 }
 	}
 
 	&.no {
 		background-color: #c99;
 		color: #700;
 
-		h1 {
-			background-color: #b56;
-		}
+		h1 { background-color: #b56 }
 	}
 }
+
+.secondary { color: #aaa }
 
 .md {
 	h1, h2, h3, h4, h5, h6 { color: #446e9b }
@@ -143,9 +135,7 @@ footer, .last-modified {
 	h5 { font-size: 16px }
 	h6 { font-size: 16px }
 
-	a:hover {
-		text-decoration: underline;
-	}
+	a:hover { text-decoration: underline }
 
 	pre {
 		padding: 10px;
@@ -164,9 +154,7 @@ footer, .last-modified {
 	table {
 		width: 100%;
 
-		thead, tfoot {
-			background-color: #f5f5f5;
-		}
+		thead, tfoot { background-color: #f5f5f5 }
 
 		th, td {
 			padding: 10px;
@@ -174,9 +162,7 @@ footer, .last-modified {
 		}
 	}
 
-	code {
-		background-color: #fee9cc;
-	}
+	code { background-color: #fee9cc }
 
 	.code {
 		.line-numbers {

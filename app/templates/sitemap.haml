@@ -4,19 +4,35 @@
 	%h1 Sitemap
 
 	%p
-		All existing pages.
+		-# this is pretty ugly and unscaleable but my only filtering
+		-# in the sitemap is on tags for now, so it'll do.
+		- if @tag
+			Pages tagged with
+			%em= @tag
+		- else
+			All existing pages.
 
 	%ul.sitemap
 		- @sitemap.all do |page|
 			%li
 				%a{href: "/p/#{page.name}"}= page.name
+				&mdash;
+				-# we're using a #published dataset so this is safe
+				= page.latest_published.display_title
 
 				%br
 
-				-# we're using a #published dataset so this is safe
-				= page.latest_published.display_title
-				&mdash;
-				= page.latest_published.content.length
-				bytes, modified
-				%time.js-timeago{datetime: page.latest_published.created_at.iso8601}
-					= page.latest_published.created_at
+				- if page.tags.any?
+					- page.tags.each do |tag|
+						%a{href: "/sitemap/?tag=#{tag.name}"}
+							%span.ui.mini.blue.label= tag.name
+
+				%span.ui.mini.label
+					= page.latest_published.content.length
+					bytes
+
+				%span.ui.mini.label
+					modified
+					%time.js-timeago{datetime: page.latest_published.created_at.iso8601}
+						= page.latest_published.created_at
+
