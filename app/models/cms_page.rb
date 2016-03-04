@@ -36,6 +36,7 @@ class CmsPage < Sequel::Model
 
 	def set_tags(new_tags)
 		old_tags = tags.map(&:name) # existing tags
+		new_tags = new_tags.map{|m| m.strip } # remove leading/trailing spaces
 
 		# delete tags in old_tags but not new_tags
 		old_tags.each do |name|
