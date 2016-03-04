@@ -26,9 +26,6 @@ Sequel.migration do
 			primary_key :id
 
 			String      :name, null: false, index: { unique: true }
-			String      :header
-
-			TrueClass   :link, null: false, default: false
 
 			DateTime    :created_at, null: false
 
