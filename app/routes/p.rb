@@ -25,13 +25,15 @@ class Nabu
 				r.post do
 					@page.save if @page.new?
 					pv = @page.add_version(user: user,
-																 content: r.params['content'],
-																 display_title: r.params['display_title'],
-																 version: @pv ? @pv.version + 1 : 1
-																)
-
+										   content: r.params['content'],
+										   display_title: r.params['display_title'],
+										   version: @pv ? @pv.version + 1 : 1
+										  )
 					# all pages are published for now, drafts not implemented
 					pv.publish!
+
+					# update tags
+					@page.set_tags(r.params['tags'].split(','))
 
 					r.redirect "/p/#{@page.name}"
 				end

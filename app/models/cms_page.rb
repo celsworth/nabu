@@ -13,7 +13,7 @@ class CmsPage < Sequel::Model
 
 	many_to_one :latest_published, class: :CmsPageVersion, key: :published_id
 
-	many_to_many :tags
+	many_to_many :tags, order: :name
 
 	subset :blog, {type: 'blog'}
 	subset :page, {type: 'page'}
@@ -31,6 +31,25 @@ class CmsPage < Sequel::Model
 		def group_by_month
 			m = Sequel.as(Sequel.function(:date_trunc, 'month', :created_at), :m)
 			select(m).group_and_count(m).reverse(:m)
+		end
+	end
+
+	def set_tags(new_tags)
+		old_tags = tags.map(&:name) # existing tags
+
+		# delete tags in old_tags but not new_tags
+		old_tags.each do |name|
+			unless new_tags.include? name
+				remove_tag(Tag[name: name])
+			end
+		end
+
+		# add tags in tag_array but not old_tags
+		new_tags.each do |name|
+			unless old_tags.include? name
+				tag = Tag.find_or_create(name: name)
+				add_tag(tag)
+			end
 		end
 	end
 

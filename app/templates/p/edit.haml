@@ -8,8 +8,10 @@
 			.fields
 				.two.wide.field
 					%button.ui.primary.button{name: 'save'} Save
-				.fourteen.wide.field
+				.seven.wide.field
 					%input{type: 'text', placeholder: 'Title', name: 'display_title', value: @pv&.display_title}
+				.seven.wide.field
+					%input{type: 'text', placeholder: 'Tags', name: 'tags', value: @page.tags.map(&:name).join(',')}
 
 	.seven.wide.column
 		-# don't leave an empty line under :preserve or it ends up getting

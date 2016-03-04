@@ -8,6 +8,9 @@
 
 - if @pv
 	%p.last-modified
-		Last modified:
+		Modified
 		%time.js-timeago{title: @pv.created_at, datetime: @pv.created_at.iso8601}
 			= @pv.created_at
+
+		- if @page.tags.any?
+			= '[tags: %s]' % @page.tags.map{|tag| tag.name }.join(', ')
