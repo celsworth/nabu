@@ -8,7 +8,7 @@
 		-# in the sitemap is on tags for now, so it'll do.
 		- if @tag
 			Pages tagged with
-			%em= @tag
+			%em= CGI.escapeHTML @tag
 		- else
 			All existing pages.
 
