@@ -90,6 +90,7 @@ footer, .last-modified {
 	min-width: 130px;
 	margin-left: 10px;
 	float: right;
+	border-radius: 5px;
 	font-size: 12px;
 	text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.5);
 
@@ -97,6 +98,8 @@ footer, .last-modified {
 		display: block;
 		margin: 0;
 		padding: 5px 8px;
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
 		font-size: 14px;
 		font-variant: small-caps;
 	}
