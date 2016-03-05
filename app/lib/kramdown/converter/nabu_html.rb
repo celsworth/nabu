@@ -13,8 +13,12 @@ module Kramdown
 				# This benefits from using relative links in markdown, ie
 				# I just link to projects.nabu literally as
 				# [Nabu](projects.nabu), making the href comparison simple.
-				el.attr['data-page-exists'] =
-					CmsPage.page_cache.include? el.attr['href']
+				href = el.attr['href']
+				# skip this for any remote links.
+				unless href[0..1] == '//' || href[0..3] == 'http'
+					el.attr['data-page-exists'] =
+						CmsPage.page_cache.include? href
+				end
 
 				format_as_span_html(el.type, el.attr, res)
 			end
