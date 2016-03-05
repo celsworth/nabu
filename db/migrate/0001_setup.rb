@@ -28,8 +28,6 @@ Sequel.migration do
 			String      :name, null: false, index: { unique: true }
 
 			DateTime    :created_at, null: false
-
-			index :name, type: :gist, opclass: :gist_trgm_ops, name: :tags_name_trgm_index
 		end
 
 
@@ -40,8 +38,6 @@ Sequel.migration do
 			foreign_key :parent_id, :cms_pages, index: true
 
 			String      :type, null: false
-			# used in links, so this can't be changed after initial version saved?
-			# (if it can, we'll need a mapping redirect table)
 			String      :name, null: false
 
 			DateTime    :created_at, null: false # initial page creation
