@@ -5,9 +5,14 @@ class Nabu
 		r.get do
 			@sitemap = CmsPage.published.order(:name)
 
-			# tag filtering, if set. @tag is used in sitemap.haml as well.
+			# the @vars set below are used in templates as well
+
 			if (@tag = r.params['tag']) && (t = Tag[name: @tag])
+				# tag filtering, if set.
 				@sitemap = @sitemap.where(tags: t)
+			elsif @search = r.params['search']
+				# search query, if set.
+				@sitemap = @sitemap.search(@search)
 			end
 
 			render 'sitemap'

@@ -18,16 +18,11 @@ class CmsPage < Sequel::Model
 
 
 	dataset_module do
-		def complete_name(q)
-			column = :name
-			where("? % ?", column, q).or(Sequel.ilike(column, "#{q}%"))
-		end
+		def search(query)
+			tsquery = Sequel.function(:plainto_tsquery, 'english', query)
+			condition = Sequel.lit(["(content @@ ", " )"], tsquery)
 
-		# returns array of :m and :count for pages created in each month
-		# useful for blog post sidebar
-		def group_by_month
-			m = Sequel.as(Sequel.function(:date_trunc, 'month', :created_at), :m)
-			select(m).group_and_count(m).reverse(:m)
+			eager_graph(:latest_published).where(condition)
 		end
 	end
 

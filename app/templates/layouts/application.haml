@@ -31,11 +31,18 @@
 				%a.link.item{href: '/p/ref'} Reference
 
 				.right.menu
-					- if user.logged_in?
+
+					-# if user.logged_in?
 						%a.link.item{href: '/account/logout'}= user.email
-					- else
+					-# else
 						%a.link.item{href: '/account/login'}
 							%i.user.icon
+
+					%form.item{method: 'get', action: '/sitemap'}
+						.ui.mini.action.input
+							%input{type: 'text', name: 'search', value: @search, placeholder: 'Search...'}
+							%button.ui.mini.icon.button{type: 'submit'}
+								%i.search.icon
 
 		%main.ui.container
 			%aside.ui.orange.icon.message.under-construction

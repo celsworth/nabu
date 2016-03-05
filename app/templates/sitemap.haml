@@ -4,11 +4,14 @@
 	%h1 Sitemap
 
 	%p
-		-# this is pretty ugly and unscaleable but my only filtering
-		-# in the sitemap is on tags for now, so it'll do.
+		-# this won't scale far, but it doesn't have to.
+		-# tags and search are about all I want here for now.
 		- if @tag
 			Pages tagged with
 			%em= CGI.escapeHTML @tag
+		- elsif @search
+			Pages matching
+			%em= CGI.escapeHTML @search
 		- else
 			All existing pages.
 
