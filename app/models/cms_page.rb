@@ -83,7 +83,7 @@ class CmsPage < Sequel::Model
 			# the #clear is usually superfluous as we're normally called
 			# when empty, but better safe than sorry.
 			@@page_name_cache.clear
-			@@page_name_cache.merge all.map(&:name)
+			@@page_name_cache.merge select_map(:name)
 		end
 	end
 end
