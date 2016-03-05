@@ -11,8 +11,8 @@ module Kramdown
 				# CSS depending on whether the page exists in my db.
 				#
 				# This benefits from using relative links in markdown, ie
-				# I just link to projects.nabu literally as
-				# [Nabu](projects.nabu), making the href comparison simple.
+				# I just link to projects.nabu as [Nabu](projects.nabu),
+				# making the href comparison simple.
 				href = el.attr['href']
 				# skip this for any remote links.
 				unless href[0..1] == '//' || href[0..3] == 'http'
