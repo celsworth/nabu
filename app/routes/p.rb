@@ -35,6 +35,9 @@ class Nabu
 					# update tags
 					@page.set_tags(r.params['tags'].split(','))
 
+					# clear the page cache, it will be refilled on the next hit
+					CmsPage.page_cache.clear
+
 					r.redirect "/p/#{@page.name}"
 				end
 

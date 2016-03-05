@@ -38,9 +38,21 @@ end
 
 require 'tilt/haml' # squash tilt warning
 
+# app/lib is laid out Gem-style; sub-directories are nested classes/modules
+[
+	'app/lib',         # generic libraries
+].each do |path|
+	Unreloader.require(path) do |f|
+		# kramdown/converter/nabu_html.rb -> Kramdown::Converter::NabuHtml
+		f.sub(File.expand_path('app/lib'), ''). # remove path prefix
+			sub(/^\//, ''). # remove leading /
+			sub(/\.rb\z/, '').split('/').map(&:capitalize).join('::').
+			gsub(/_(.)/){ $1.upcase } # first letter capitalisation
+	end
+end
+
 [
 	'config/database.rb',
-	'app/lib',         # generic libraries
 	'app/decorators',  # Decorators; additional specific functionality on classes
 	'app/presenters',  # Presenters; decorators specifically for display functionality
 	'app/models',      # Sequel Models

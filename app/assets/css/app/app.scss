@@ -1,6 +1,6 @@
-body {
+html, body {
 	// override Semantic-UI 14px font size
-	font-size: 16px;
+	font-size: 18px;
 }
 
 .ui.menu.site-menu {
@@ -20,10 +20,15 @@ a[href^='//'], a[href^='http'] {
 	background-position: center left;
 }
 
+.md a[data-page-exists=false] {
+	color: #a00;
+	text-decoration: line-through;
+}
+
 footer, .last-modified {
 	margin-top: 20px;
 	color: #777;
-	font-size: 12px;
+	font-size: 0.7rem;
 	text-align: center;
 
 	p { margin: 0 } // nested paragraphs in footer
@@ -35,7 +40,7 @@ footer, .last-modified {
 	padding: 0;
 	float: right;
 	background-color: #f4f7f8;
-	font-size: 12px;
+	font-size: 0.8rem;
 	list-style-type: none;
 
 	a {
@@ -90,8 +95,8 @@ footer, .last-modified {
 	margin-left: 10px;
 	float: right;
 	border-radius: 5px;
-	font-size: 12px;
-	text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.5);
+	font-size: 0.8rem;
+	box-shadow: 0 0 0 1px rgba(34, 36, 38, 0.22) inset, 0 0 0 0 transparent;
 
 	h1 {
 		display: block;
@@ -99,7 +104,7 @@ footer, .last-modified {
 		padding: 5px 8px;
 		border-top-left-radius: inherit;
 		border-top-right-radius: inherit;
-		font-size: 14px;
+		font-size: 1rem;
 		font-variant: small-caps;
 	}
 
@@ -110,17 +115,23 @@ footer, .last-modified {
 	}
 
 	&.yes {
-		background-color: #9d9;
-		color: #060;
+		background-color: #e5f9e7;
+		color: #1aa62a;
 
-		h1 { background-color: #5b6 }
+		h1 {
+			background-color: darken(#e5f9e7, 20%);
+			color: #181;
+		}
 	}
 
 	&.no {
-		background-color: #c99;
-		color: #700;
+		background-color: #ffe8e6;
+		color: #c82121;
 
-		h1 { background-color: #b56 }
+		h1 {
+			background-color: darken(#ffe8e6, 20%);
+			color: #811;
+		}
 	}
 }
 

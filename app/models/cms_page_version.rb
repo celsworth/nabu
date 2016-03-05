@@ -15,9 +15,12 @@ class CmsPageVersion < Sequel::Model
 		}
 		# can add pre/post-processing here later
 		kramdown = Kramdown::Document.new(content,
-																			toc_levels: 2..6,
-																			syntax_highlighter_opts: sh_opts)
-		return kramdown.to_html
+										  toc_levels: 2..6,
+										  syntax_highlighter_opts: sh_opts)
+
+		# #to_nabu_html calls Kramdown::Converter::NabuHtml which is
+		# a subclass of Html, containing some of my markdown overrides.
+		return kramdown.to_nabu_html
 	end
 
 	def render_text
