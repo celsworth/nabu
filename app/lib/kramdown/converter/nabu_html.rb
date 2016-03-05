@@ -17,7 +17,7 @@ module Kramdown
 				# skip this for any remote links.
 				unless href[0..1] == '//' || href[0..3] == 'http'
 					el.attr['data-page-exists'] =
-						CmsPage.page_cache.include? href
+						CmsPage.page_name_cache.include? href
 				end
 
 				format_as_span_html(el.type, el.attr, res)

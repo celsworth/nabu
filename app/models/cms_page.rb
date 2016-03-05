@@ -68,21 +68,22 @@ class CmsPage < Sequel::Model
 		user&.is_admin? ? latest_version : latest_published
 	end
 
-	# class variable used by Kramdown::Converter::NabuHtml to check if
-	# a page exists for styling purposes. I just #clear the Set when
-	# changes might be made and then .page_cache will handle refreshing it.
-	@@page_cache = Set.new
+	# class variable used by Kramdown::Converter::NabuHtml to check if a
+	# page exists for styling purposes. I just #clear the Set when changes
+	# might be made and then .page_name_cache will handle refreshing it.
+	@@page_name_cache = Set.new
 	class << self
-		def page_cache
-			@@page_cache.empty? ? refresh_page_cache : @@page_cache
+		def page_name_cache
+			@@page_name_cache.empty? ?
+				refresh_page_name_cache : @@page_name_cache
 		end
 
-		def refresh_page_cache
+		def refresh_page_name_cache
 			# clearing and merging is about twice as fast as making a new Set.
 			# the #clear is usually superfluous as we're normally called
 			# when empty, but better safe than sorry.
-			@@page_cache.clear
-			@@page_cache.merge all.map(&:name)
+			@@page_name_cache.clear
+			@@page_name_cache.merge all.map(&:name)
 		end
 	end
 end
