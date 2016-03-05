@@ -135,6 +135,13 @@ footer, .last-modified {
 	}
 }
 
+.ui.message.under-construction {
+	padding-right: 140px;
+	background-image: url(/images/under_construction.png);
+	background-size: auto 100%;
+	background-position: right center;
+	background-repeat: no-repeat;
+}
 
 .md {
 	h1, h2, h3, h4, h5, h6 { color: #446e9b }
