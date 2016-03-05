@@ -20,11 +20,6 @@ a[href^='//'], a[href^='http'] {
 	background-position: center left;
 }
 
-.md a[data-page-exists=false] {
-	color: #a00;
-	text-decoration: line-through;
-}
-
 footer, .last-modified {
 	margin-top: 20px;
 	color: #777;
@@ -137,10 +132,10 @@ footer, .last-modified {
 
 .ui.message.under-construction {
 	padding-right: 140px;
-	background-image: url(/images/under_construction.png);
-	background-size: auto 100%;
-	background-position: right center;
+	background-image: url('/images/under_construction.png');
 	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: auto 100%;
 }
 
 .md {
@@ -152,7 +147,12 @@ footer, .last-modified {
 	h5 { font-size: 16px }
 	h6 { font-size: 16px }
 
-	a:hover { text-decoration: underline }
+	a[data-page-exists=false] {
+		color: #a00;
+		text-decoration: line-through;
+
+		&:hover { text-decoration: underline line-through }
+	}
 
 	pre {
 		padding: 10px;
