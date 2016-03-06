@@ -61,7 +61,7 @@ Sequel.migration do
 
 		# new row for every save (if anything changed)
 		# show the latest published_at version for a given cmd_page_id
-		create_table(:cms_page_versions) do
+		create_table(:cms_page_versions2) do
 			primary_key :id
 
 			# cascade: deleting a page should delete its versions
@@ -81,12 +81,13 @@ Sequel.migration do
 			DateTime    :published_at
 
 			index [:cms_page_id, :version], unique: true
+
+			index Sequel.function(:to_tsvector, 'english', :content), type: :gin
 		end
 
 		alter_table(:cms_pages) do
 			add_foreign_key :published_id, :cms_page_versions, on_delete: :set_null, unique: true
 		end
-
 
 	end
 end
