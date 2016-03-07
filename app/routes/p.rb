@@ -2,6 +2,7 @@ class Nabu
 
 	route 'p' do |r|
 		r.is 'preview' do
+			r.halt 403 unless user.is_admin? # we're not a free md renderer.
 			response.headers['Content-Type'] = 'text/javascript'
 			cpv = CmsPageVersion.new(content: r.params['content'])
 			"$('.md-preview').html(#{cpv.render_html.to_json});"
@@ -12,6 +13,10 @@ class Nabu
 			# TODO: caching
 			@page = CmsPage[name: pagename] || CmsPage.new(name: pagename)
 			@pv = @page&.latest_visible(user)
+
+			# For now I intentionally haven't done a #visible check here;
+			# if someone knows the name of a page then I probably gave them
+			# it so they can view it. See how that logic goes..
 
 			r.halt 404 unless @pv or user.is_admin?
 
