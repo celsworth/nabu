@@ -27,14 +27,22 @@
 
 				- if page.tags.any?
 					- page.tags.each do |tag|
-						%a{href: "/sitemap/?tag=#{tag.name}"}
-							%span.ui.mini.blue.label= tag.name
+						%a.ui.mini.blue.label{href: "/sitemap/?tag=#{tag.name}"}
+							%i.tag.icon
+							= tag.name
+
+				- unless page.visible?
+					%span.ui.red.mini.label
+						%i.lock.icon
+						private
 
 				%span.ui.mini.label
+					%i.file.icon
 					= page.latest_published.content.length
 					bytes
 
 				%span.ui.mini.label
+					%i.calendar.icon
 					modified
 					%time.js-timeago{datetime: page.latest_published.created_at.iso8601}
 						= page.latest_published.created_at
