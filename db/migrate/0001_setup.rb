@@ -61,7 +61,7 @@ Sequel.migration do
 
 		# new row for every save (if anything changed)
 		# show the latest published_at version for a given cmd_page_id
-		create_table(:cms_page_versions2) do
+		create_table(:cms_page_versions) do
 			primary_key :id
 
 			# cascade: deleting a page should delete its versions
