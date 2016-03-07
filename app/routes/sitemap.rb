@@ -8,7 +8,7 @@ class Nabu
 			@sitemap = CmsPage.published.order(:name)
 
 			# only admin can see private pages
-			@sitemap = @sitemap.visible unless user.admin?
+			@sitemap = @sitemap.visible unless user.is_admin?
 
 			if (@tag = r.params['tag']) && (t = Tag[name: @tag])
 				# tag filtering, if set.
