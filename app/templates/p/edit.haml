@@ -5,12 +5,16 @@
 
 			%textarea#js-hidden-ta{name: 'content'}
 
-			.fields
+			.inline.fields
 				.two.wide.field
 					%button.ui.primary.button{name: 'save'} Save
-				.seven.wide.field
+				.two.wide.field
+					%select{name: 'visible'}
+						%option{value: 1, selected: @page.visible} Visible
+						%option{value: 0, selected: !@page.visible} Private
+				.six.wide.field
 					%input{type: 'text', placeholder: 'Title', name: 'display_title', value: @pv&.display_title}
-				.seven.wide.field
+				.six.wide.field
 					%input{type: 'text', placeholder: 'Tags', name: 'tags', value: @page.tags.map(&:name).join(',')}
 
 	.seven.wide.column

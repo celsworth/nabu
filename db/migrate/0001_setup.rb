@@ -37,8 +37,9 @@ Sequel.migration do
 
 			foreign_key :parent_id, :cms_pages, index: true
 
-			String      :type, null: false
 			String      :name, null: false
+
+			TrueClass   :visible, null: false, default: true, index: true
 
 			DateTime    :created_at, null: false # initial page creation
 

@@ -10,7 +10,7 @@ class Nabu
 		r.on :pagename do |pagename|
 
 			# TODO: caching
-			@page = CmsPage[type: 'page', name: pagename] || CmsPage.new(type: 'page', name: pagename)
+			@page = CmsPage[name: pagename] || CmsPage.new(name: pagename)
 			@pv = @page&.latest_visible(user)
 
 			r.halt 404 unless @pv or user.is_admin?
@@ -29,8 +29,12 @@ class Nabu
 										   display_title: r.params['display_title'],
 										   version: @pv ? @pv.version + 1 : 1
 										  )
+
 					# all pages are published for now, drafts not implemented
 					pv.publish!
+
+					# update visible status
+					@page.update(visible: r.params['visible'])
 
 					# update tags
 					@page.set_tags(r.params['tags'].split(','))

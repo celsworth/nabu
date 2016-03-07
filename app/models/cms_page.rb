@@ -11,8 +11,7 @@ class CmsPage < Sequel::Model
 
 	many_to_many :tags, order: :name
 
-	subset :blog, {type: 'blog'}
-	subset :page, {type: 'page'}
+	subset :visible, {visible: true}
 
 	subset :published, {published_id: Sequel::NOTNULL}
 
@@ -53,8 +52,8 @@ class CmsPage < Sequel::Model
 	def validate
 		super
 
-		validates_presence [:type, :name]
-		validates_unique [:type, :name], only_if_modified: true
+		validates_presence [:name]
+		validates_unique [:name], only_if_modified: true
 	end
 
 	def latest_visible(user)
