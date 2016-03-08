@@ -10,39 +10,40 @@
 			Pages tagged with
 			%em= CGI.escapeHTML @tag
 		- elsif @search
-			Pages matching
+			Pages containing
 			%em= CGI.escapeHTML @search
 		- else
-			All existing pages.
+			All pages.
 
 	%ul.sitemap
 		- @sitemap.all do |page|
 			%li
 				%a{href: "/p/#{page.name}"}= page.name
-				&mdash;
+				&ndash;
 				-# we're using a #published dataset so this is safe
 				= page.latest_published.display_title
 
 				%br
 
-				- page.tags.each do |tag|
-					%a.ui.mini.blue.label{href: "/sitemap/?tag=#{tag.name}"}
-						%i.tag.icon
-						= tag.name
+				.ui.mini.labels
+					- page.tags.each do |tag|
+						%a.ui.blue.label{href: "/sitemap/?tag=#{tag.name}"}
+							%i.tag.icon
+							= tag.name
 
-				- unless page.visible?
-					%span.ui.red.mini.label
-						%i.lock.icon
-						private
+					- unless page.visible?
+						%span.ui.red.label
+							%i.lock.icon
+							private
 
-				%span.ui.mini.label
-					%i.file.icon
-					= page.latest_published.content.length
-					bytes
+					%span.ui.label
+						%i.file.icon
+						= page.latest_published.content.length
+						bytes
 
-				%span.ui.mini.label
-					%i.calendar.icon
-					modified
-					%time.js-timeago{datetime: page.latest_published.created_at.iso8601}
-						= page.latest_published.created_at
+					%span.ui.label
+						%i.calendar.icon
+						modified
+						%time.js-timeago{datetime: page.latest_published.created_at.iso8601}
+							= page.latest_published.created_at
 
