@@ -26,20 +26,11 @@ Unreloader = Rack::Unreloader.new(reload: dev, logger: dev && LOGGER) do
 end
 def reload!() Unreloader.reloader.reload! end
 
-# early prerequisites
-%w(lib).each do |path|
-	LOGGER.debug "LOAD ".ansi(:yellow, :bold) + path do
-		Unreloader.require(path) do |f|
-			# some_model.rb -> SomeModel
-			File.basename(f).sub(/\.rb\z/, '').split('_').map(&:capitalize).join
-		end
-	end
-end
-
 require 'tilt/haml' # squash tilt warning
 
-# app/lib is laid out Gem-style; sub-directories are nested classes/modules
+# lib and app/lib laid out Gem-style; sub-directories are nested classes/modules
 [
+	'lib',             # early prerequisites, monkey-patching etc.
 	'app/lib',         # generic libraries
 ].each do |path|
 	Unreloader.require(path) do |f|
@@ -53,8 +44,6 @@ end
 
 [
 	'config/database.rb',
-	'app/decorators',  # Decorators; additional specific functionality on classes
-	'app/presenters',  # Presenters; decorators specifically for display functionality
 	'app/models',      # Sequel Models
 	'app/policies',    # Policy Objects; read-only filtering logic
 	'app/services',    # Service Objects; read/write business logic
