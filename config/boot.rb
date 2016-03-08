@@ -35,7 +35,7 @@ require 'tilt/haml' # squash tilt warning
 ].each do |path|
 	Unreloader.require(path) do |f|
 		# kramdown/converter/nabu_html.rb -> Kramdown::Converter::NabuHtml
-		f.sub(File.expand_path('app/lib'), ''). # remove path prefix
+		f.sub(File.expand_path(path), ''). # remove path prefix
 			sub(/^\//, ''). # remove leading /
 			sub(/\.rb\z/, '').split('/').map(&:capitalize).join('::').
 			gsub(/_(.)/){ $1.upcase } # first letter capitalisation
