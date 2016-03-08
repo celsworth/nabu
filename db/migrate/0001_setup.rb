@@ -37,13 +37,11 @@ Sequel.migration do
 
 			foreign_key :parent_id, :cms_pages, index: true
 
-			String      :name, null: false
+			String      :name, null: false, index: {unique: true}
 
 			TrueClass   :visible, null: false, default: true, index: true
 
 			DateTime    :created_at, null: false # initial page creation
-
-			index [:type, :name], unique: true
 		end
 
 		# many-many join
