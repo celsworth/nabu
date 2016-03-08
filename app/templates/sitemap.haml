@@ -25,11 +25,10 @@
 
 				%br
 
-				- if page.tags.any?
-					- page.tags.each do |tag|
-						%a.ui.mini.blue.label{href: "/sitemap/?tag=#{tag.name}"}
-							%i.tag.icon
-							= tag.name
+				- page.tags.each do |tag|
+					%a.ui.mini.blue.label{href: "/sitemap/?tag=#{tag.name}"}
+						%i.tag.icon
+						= tag.name
 
 				- unless page.visible?
 					%span.ui.red.mini.label
