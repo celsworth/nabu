@@ -56,23 +56,27 @@
 			%p
 				Except where otherwise noted, content on this site
 				is licensed under
-				%a{href: '//creativecommons.org/licenses/by-nc-nd/4.0/'}
-					CC Attribution-NonCommercial-NoDerivatives
-					4.0 International.
+				= succeed '.' do
+					%a{href: '//creativecommons.org/licenses/by-nc-nd/4.0/'}
+						CC Attribution-NonCommercial-NoDerivatives
+						4.0 International
 
 			%p
 				- subdomain = SecureRandom.hex[0..5]
 				- email = "chris@#{subdomain}.cae.me.uk"
 				Copyright &copy; Chris Elsworth
-				%a{href: "mailto:#{email}"} &lt;#{email}&gt;.
+				= succeed '.' do
+					%a{href: "mailto:#{email}"} &lt;#{email}&gt;
 
 				Some Rights Reserved.
 
 			%p
-				%a{href: '/sitemap'} Sitemap.
+				= succeed '.' do
+					%a{href: '/sitemap'} Sitemap
 
 				Powered by
-				%a{href: '/p/projects.nabu'} Nabu.
+				= succeed '.' do
+					%a{href: '/p/projects.nabu'} Nabu
 
 
 		:javascript
