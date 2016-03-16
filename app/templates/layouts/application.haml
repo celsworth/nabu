@@ -13,12 +13,7 @@
 		%link{href: '/dist/Semantic-2.1.8/semantic.min.css', rel: 'stylesheet'}
 		= assets [ :css, :app ], media: 'screen'
 
-		//%script{src: '/dist/Semantic-2.1.8/semantic.min.js', type: 'text/javascript'}
 		%script{src: '/dist/jquery-2.2.0.min.js', type: 'text/javascript'}
-		//%script{src: '/dist/jquery.pjax-1.9.6.js', type: 'text/javascript'}
-		%script{src: '/dist/smart-time-ago-0.1.5.js', type: 'text/javascript'}
-
-		= assets [ :js, :app ]
 
 	%body
 		%nav.ui.inverted.secondary.menu.site-menu
@@ -77,5 +72,13 @@
 					%a{href: '/p/projects.nabu'} Nabu
 
 
+		//%script{src: '/dist/Semantic-2.1.8/semantic.min.js', type: 'text/javascript'}
+		//%script{src: '/dist/jquery.pjax-1.9.6.js', type: 'text/javascript'}
+		%script{src: '/dist/smart-time-ago-0.1.5.js', type: 'text/javascript', defer: true}
+
+		= assets [ :js, :app ]
+
 		:javascript
-			$('body').timeago();
+			$(window).ready(function(){
+				$('body').timeago();
+			});
