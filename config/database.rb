@@ -32,6 +32,9 @@ DB.optimize_model_load = true
 #DB.extension :schema_caching
 #DB.load_schema_cache? File.expand_path(File.join(APP_ROOT, 'tmp', 'schema.cache'))
 
+# this is to stop code reloading breaking when a model changes.
+# see http://sequel.jeremyevans.net/rdoc/classes/Sequel/Model/Associations/ClassMethods.html#attribute-i-cache_associations
+Sequel::Model.cache_associations = false if development?
 
 # be less bitchy in set()
 Sequel::Model.strict_param_setting = false
