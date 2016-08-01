@@ -14,8 +14,8 @@ module Kramdown
 				# I just link to projects.nabu as [Nabu](projects.nabu),
 				# making the href comparison simple.
 				href = el.attr['href']
-				# skip this for any remote links.
-				unless href[0..1] == '//' || href[0..3] == 'http'
+				# skip this for any remote links, or page anchor links
+				unless href[0..1] == '//' || href[0..3] == 'http' || href[0] == '#'
 					el.attr['data-page-exists'] =
 						CmsPage.page_name_cache.include? href
 				end
