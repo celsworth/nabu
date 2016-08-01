@@ -34,7 +34,7 @@ DB.optimize_model_load = true
 
 # this is to stop code reloading breaking when a model changes.
 # see http://sequel.jeremyevans.net/rdoc/classes/Sequel/Model/Associations/ClassMethods.html#attribute-i-cache_associations
-Sequel::Model.cache_associations = false if development?
+Sequel::Model.cache_associations = false if RACK_ENV == 'development'
 
 # be less bitchy in set()
 Sequel::Model.strict_param_setting = false
