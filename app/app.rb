@@ -26,8 +26,7 @@ class Nabu < Roda
 	plugin :padrino_render,
 		engine: 'haml',
 		views:  'app/templates', layout: 'layouts/application'
-	plugin :static, %w(/dist /favicon.ico /images),
-		header_rules: [ [:all, {'Cache-Control' => 'private, max-age=3600'}] ]
+	plugin :public
 	plugin :status_handler
 
 	configure do
@@ -51,6 +50,7 @@ class Nabu < Roda
 
 	route do |r|
 		r.assets
+		r.public
 
 		r.multi_route
 
