@@ -1,4 +1,5 @@
 require 'kramdown'
+require 'coderay_bash' # add bash support to coderay
 
 class CmsPageVersion < Sequel::Model
 	many_to_one :page, class: :CmsPage, key: :cms_page_id
@@ -16,6 +17,7 @@ class CmsPageVersion < Sequel::Model
 		# can add pre/post-processing here later
 		kramdown = Kramdown::Document.new(content,
 										  toc_levels: 2..6,
+										  syntax_highlighter: 'coderay',
 										  syntax_highlighter_opts: sh_opts)
 
 		# #to_nabu_html calls Kramdown::Converter::NabuHtml which is
