@@ -155,11 +155,8 @@ footer, .last-modified {
 		&:hover { text-decoration: underline line-through }
 	}
 
-	pre {
-		padding: 10px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		background-color: #f5f5f5;
+	.highlighter-coderay {
+		margin: 20px;
 	}
 
 	blockquote {
@@ -180,8 +177,6 @@ footer, .last-modified {
 		}
 	}
 
-	code { background-color: #fee9cc }
-
 	.code {
 		.line-numbers {
 			padding-right: 10px;
@@ -189,24 +184,4 @@ footer, .last-modified {
 		}
 	}
 
-	.XXcode {
-		background-color: #222;
-		color: #eee;
-
-		// ruby
-		.key { color: #f0f }
-		.constant { color: #83fe75 }
-		.comment { color: #0ff }
-		.keyword { color: #5bd6bd }
-		.class { color: #83fe75  }
-		.content { color: #f0f }
-		.instance-variable { color: #0ff }
-
-		// C
-		.preprocessor { color: #5bd6bd }
-		.include { color: #f0f }
-
-		// haml
-		.tag { color: #ff0 }
-	}
 }

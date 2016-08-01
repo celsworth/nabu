@@ -11,7 +11,7 @@ class Nabu < Roda
 	plugin :assets, {
 		path: "#{__dir__}/assets",
 		css: {
-			app: %w( app.scss )
+			app: %w( app.scss coderay.css )
 		},
 		js: {
 			app: %w( app.js )

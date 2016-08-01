@@ -7,7 +7,7 @@ class CmsPageVersion < Sequel::Model
 
 	def render_html
 		sh_opts = {
-			css: :style,
+			css: :class,
 			default_lang: 'ruby',
 			line_numbers: false,
 			line_number_anchors: false,
