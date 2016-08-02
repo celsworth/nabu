@@ -22,6 +22,21 @@ module Kramdown
 
 				format_as_span_html(el.type, el.attr, res)
 			end
+
+			def convert_p(el, indent)
+				if el.options[:transparent]
+					inner(el, indent)
+				elsif !el.children.nil? && el.children.count == 1 && el.children.first.type == :img
+					# paragraph only contains an image; treat it as a figure instead.
+					convert_figure(el, el.children.first, indent)
+				else
+					format_as_block_html(el.type, el.attr, inner(el, indent), indent)
+				end
+			end
+
+			def convert_figure(parent, el, indent)
+				"#{' '*indent}<figure #{html_attributes(parent.attr)}><img#{html_attributes(el.attr)} />#{(el.attr['title'] ? "<figcaption>#{el.attr['title']}</figcaption>" : "")}</figure>\n"
+			end
 		end
 	end
 end
