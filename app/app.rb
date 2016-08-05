@@ -26,12 +26,8 @@ class Nabu < Roda
 	plugin :padrino_render,
 		engine: 'haml',
 		views:  'app/templates', layout: 'layouts/application'
-	plugin :path_rewriter
 	plugin :public
 	plugin :status_handler
-
-	# homepage is actually the 'home' cms page
-	rewrite_path %r{^/$}, '/p/home'
 
 	configure do
 		Haml::Options.defaults[:ugly]   = production?
@@ -59,6 +55,10 @@ class Nabu < Roda
 		r.public
 
 		r.multi_route
+
+		r.root do
+			r.redirect '/p/home'
+		end
 	end
 
 
