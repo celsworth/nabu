@@ -9,7 +9,7 @@ class Nabu < Roda
 
 
 	plugin :assets, {
-		path: "#{__dir__}/assets",
+		path: "#{__dir__}/assets", gzip: true,
 		css: {
 			app: %w( app.scss coderay.css )
 		},
@@ -51,6 +51,8 @@ class Nabu < Roda
 	status_handler 404 do
 		render 'errors/404'
 	end
+
+	compile_assets if production?
 
 	route do |r|
 		r.assets
