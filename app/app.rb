@@ -10,12 +10,10 @@ class Nabu < Roda
 
 	plugin :assets, {
 		path: "#{__dir__}/assets", gzip: true,
-		css: {
-			app: %w( app.scss coderay.css )
-		},
-		js: {
-			app: %w( app.js )
-		}
+		css: %w( app.scss coderay.css ),
+		css_compressor: :yui, # default, but being explicit..
+		js: %w( app.js ),
+		js_compressor: :none # think :yui breaks because app.js is empty?
 	}
 	plugin :csrf
 	plugin :delegate

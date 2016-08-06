@@ -14,8 +14,6 @@ task :console => :boot do
 	$rack = Rack::Shell::Session.new(rack_app)
 	require 'pry'
 
-	include CDS
-
 	env_color = (RACK_ENV == 'production' ? "\e[31m\e[1m" : "\e[36m\e[1m")
 	puts "\nPry #{Pry::VERSION} started in #{env_color}#{RACK_ENV}\e[0m environment\n\n"
 
