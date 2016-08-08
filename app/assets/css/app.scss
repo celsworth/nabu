@@ -334,7 +334,7 @@ a.label {
 		color: #a00;
 		text-decoration: line-through;
 
-		&:hover { text-decoration: underline line-through }
+		&:hover { color: #700 }
 	}
 
 	.highlighter-coderay {
@@ -343,6 +343,10 @@ a.label {
 
 	.center {
 		text-align: center;
+	}
+
+	pre {
+		font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
 	}
 
 	img {
