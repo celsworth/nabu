@@ -5,7 +5,7 @@ class Nabu
 			r.post do
 				if (user = User[email: r.params['email']]) && user.authenticate_password(r.params['password'])
 					session[:user_id] = user.id
-					r.redirect r.params['referer']
+					r.redirect '/'
 				end
 				render 'account/login' # TODO: display login error
 			end

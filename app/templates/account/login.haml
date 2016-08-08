@@ -1,14 +1,9 @@
-.ui.stackable.grid
-	.ten.wide.centered.column
-		%form.ui.equal.width.segment.form{method: 'post', action: '/account/login'}
-			%input{type: 'hidden', name: 'referer', value: request.params['referer'] || request.referer}
-			= csrf_tag
+-# completely unstyled, but only I use it.
+%form{method: 'post', action: '/account/login'}
+	= csrf_tag
 
-			.field
-				%input{type: 'text', name: 'email', placeholder: 'Email', value: request.params['email']}
+	%input{type: 'text', name: 'email', placeholder: 'Email', value: request.params['email']}
 
-			.field
-				%input{type: 'password', name: 'password', placeholder: 'Password'}
+	%input{type: 'password', name: 'password', placeholder: 'Password'}
 
-			.field
-				%button.ui.submit.primary.button{type: 'submit'} Login
+	%button.ui.submit.primary.button{type: 'submit'} Login

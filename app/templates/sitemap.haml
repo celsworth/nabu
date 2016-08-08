@@ -25,25 +25,24 @@
 
 				%br
 
-				.ui.mini.labels
-					- page.tags.each do |tag|
-						%a.ui.blue.label{href: "/sitemap/?tag=#{tag.name}"}
-							%i.tag.icon
-							= tag.name
+				- page.tags.each do |tag|
+					%a.ui.mini.blue.label{href: "/sitemap/?tag=#{tag.name}"}
+						%i.fa.fa-tag
+						= tag.name
 
-					- unless page.visible?
-						%span.ui.red.label
-							%i.lock.icon
-							private
+				- unless page.visible?
+					%span.ui.mini.red.label
+						%i.fa.fa-lock
+						private
 
-					%span.ui.label
-						%i.file.icon
-						= page.latest_published.content.length
-						bytes
+				%span.ui.mini.label
+					%i.fa.fa-file
+					= page.latest_published.content.length
+					bytes
 
-					%span.ui.label
-						%i.calendar.icon
-						modified
-						%time.js-timeago{datetime: page.latest_published.created_at.iso8601}
-							= page.latest_published.created_at
+				%span.ui.mini.label
+					%i.fa.fa-calendar
+					modified
+					%time.js-timeago{datetime: page.latest_published.created_at.iso8601}
+						= page.latest_published.created_at
 

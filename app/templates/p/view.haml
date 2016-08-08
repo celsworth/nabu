@@ -1,6 +1,7 @@
 - if user.is_admin?
-	%a.ui.icon.button.red{style: 'position: fixed; top: 10px; right: 10px', href: "/p/#{@page.name}/edit"}
-		%i.cogs.icon
+	%a.small.red.label{style: 'position: fixed; top: 10px; right: 10px', href: "/p/#{@page.name}/edit"}
+		%i.fa.fa-cogs
+		Edit
 
 - title @pv&.display_title
 

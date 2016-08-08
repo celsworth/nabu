@@ -1,23 +1,193 @@
+@media only screen and (max-width:767px) {
+	.container {
+		width: auto;
+		margin-right: 1em;
+		margin-left: 1em;
+	}
+
+	// save some space on mobile layout
+	.under-construction {
+		.content { padding: 5px }
+		i, img { display: none !important }
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+	.container {
+		width: 723px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+@media only screen and (min-width:992px) and (max-width:1199px) {
+	.container {
+		width: 933px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+@media only screen and (min-width:1200px) {
+	.container {
+		width: 1127px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+// special one for editing page, super-wide
+@media only screen and (min-width:2000px) {
+	.container.editing {
+		width: auto;
+		margin-right: 1em;
+		margin-left: 1em;
+	}
+}
+
+
+
 html, body {
-	// override Semantic-UI 14px font size
+	// https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
 	font-size: 18px;
 }
 
-.ui.menu.site-menu {
-	background-image: -webkit-linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+html, body, p {
+	// also on p so varying font-size inherits the correct line-height
+	line-height: 1.4;
+}
+
+a {
+	color: #4183c4;
+	text-decoration: none;
+
+	&:hover { color: #1e70bf }
+}
+
+.site-menu {
+	margin-bottom: 1em;
 	background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
 	background-repeat: no-repeat;
 
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+
+	.item {
+		display: inline-block;
+		margin: 0 2px;
+		padding: 10px 20px;
+
+		&.header { font-weight: 600 }
+	}
+
+	.right { margin-left: auto !important }
+
+	a {
+		transition: color 0.1s ease;
+		color: rgba(255, 255, 255, 0.70);
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.08);
+			color: #fff;
+		}
+	}
+
+	ul {
+		display: flex;
+		width: 100%;
+		margin: 0;
+		align-items: center;
+		list-style-type: none;
+
+		.item { display: inline-block }
+	}
+
+	#menu-toggle, .label-toggle { display: none }
+
+	.wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	@media screen and (max-width: 768px) {
+		ul {
+			height: 0;
+			padding: 0;
+			transition: all 0.5s ease;
+			opacity: 0;
+			visibility: hidden;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-between;
+
+			.item { display: block }
+		}
+
+		#menu-toggle:checked ~ ul {
+			height: 100px;
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.label-toggle {
+			display: inline;
+			float: right;
+			color: rgba(255, 255, 255, 0.8);
+			font-size: 2em;
+			cursor: pointer;
+
+			&:hover { color: rgba(255, 255, 255, 1) }
+		}
+
+		.wrapper { display: block }
+
+		.right {
+			margin: 0;
+			flex-grow: 10;
+		}
+
+		.search {
+			li, input {
+				width: 100%;
+			}
+		}
+	}
 }
 
-// external links. first rule matches protocol-relative links, second
-// matches absolutes (which I only use if a site specifically doesn't do SSL)
-a[href^='//'], a[href^='http'] {
-	padding-left: 12px;
-	background-image: linear-gradient(transparent, transparent), url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%3E%3Cpath%20fill%3D%22%23fff%22%20stroke%3D%22%2306c%22%20d%3D%22M1.5%204.518h5.982V10.5H1.5z%22%2F%3E%3Cpath%20d%3D%22M5.765%201H11v5.39L9.427%207.937l-1.31-1.31L5.393%209.35l-2.69-2.688%202.81-2.808L4.2%202.544z%22%20fill%3D%22%2306f%22%2F%3E%3Cpath%20d%3D%22M9.995%202.004l.022%204.885L8.2%205.07%205.32%207.95%204.09%206.723l2.882-2.88-1.85-1.852z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E);
-	background-repeat: no-repeat;
-	background-position: center left;
+.search {
+	input {
+		width: 70px;
+		padding: 0.5em 1em;
+
+		transition: background-color 0.2s ease, width 0.2s ease;
+
+		border: 1px solid rgba(34, 36, 38, .15);
+		border-radius: 0.4rem;
+
+		outline: 0;
+		background-color: rgba(255, 255, 255, 0.9);
+
+		font-size: 0.7rem;
+		line-height: 1.1;
+
+		&:focus {
+			width: 140px;
+			background-color: #fff;
+
+			&::placeholder { color: rgba(0, 0, 0, 0.9) }
+		}
+	}
+}
+
+.edit-pane {
+	width: 50%;
+	float: left;
+}
+
+.preview-pane {
+	width: 50%;
+	float: left;
 }
 
 footer, .last-modified {
@@ -27,7 +197,7 @@ footer, .last-modified {
 	font-size: 0.7rem;
 	text-align: center;
 
-	p { margin: 0 } // nested paragraphs in footer
+	p { margin: 0 } // paragraphs in footer
 }
 
 #markdown-toc { // ul
@@ -43,10 +213,7 @@ footer, .last-modified {
 		display: block;
 		padding: 5px 10px;
 
-		&:hover {
-			background-color: #eee;
-			text-decoration: none;
-		}
+		&:hover { background-color: #eee }
 	}
 
 	ul {
@@ -87,57 +254,73 @@ footer, .last-modified {
 // fix invisible ace scrollbar, not investigated yet.
 .ace_scrollbar.ace_scrollbar-v { width: auto !important; }
 
-.who-am-i {
-	min-width: 130px;
-	margin-left: 10px;
-	float: right;
-	border-radius: 5px;
-	font-size: 0.8rem;
-	box-shadow: 0 0 0 1px rgba(34, 36, 38, 0.22) inset, 0 0 0 0 transparent;
+.message.under-construction {
+	display: flex;
+	margin: 1em 0;
+	border-radius: 0.4rem;
+	background-color: #ffedde;
+	color: #f2711c;
+	box-shadow: 0 0 0 1px rgba(34, 36, 38, .22) inset, 0 0 0 0 transparent;
+	align-items: center;
 
-	h1 {
-		display: block;
+	.fa, p { opacity: 0.85 }
+
+	.fa {
+		margin: 0 30px;
+		color: #db2828;
+		font-size: 3em;
+	}
+
+	.header {
 		margin: 0;
-		padding: 5px 8px;
-		border-top-left-radius: inherit;
-		border-top-right-radius: inherit;
-		font-size: 1rem;
-		font-variant: small-caps;
+		font-size: 1.1rem;
 	}
 
-	ul {
-		margin: 0;
-		padding: 5px 8px;
-		list-style-type: none;
+	p {
+		margin: 5px 0;
+
+		&:last-child { margin-bottom: 0 }
 	}
 
-	&.yes {
-		background-color: #e5f9e7;
-		color: #1aa62a;
-
-		h1 {
-			background-color: darken(#e5f9e7, 20%);
-			color: #181;
-		}
-	}
-
-	&.no {
-		background-color: #ffe8e6;
-		color: #c82121;
-
-		h1 {
-			background-color: darken(#ffe8e6, 20%);
-			color: #811;
-		}
-	}
+	.right { margin-left: auto !important }
 }
 
-.ui.message.under-construction {
-	padding-right: 140px;
-	background-image: url('/images/under_construction.png');
-	background-repeat: no-repeat;
-	background-position: right center;
-	background-size: auto 100%;
+.label {
+	display: inline-block;
+	margin: 0 5px 5px 0;
+	padding: 7px 10px;
+	border-radius: 0.3rem;
+
+	background-color: #e8e8e8;
+	color: rgba(0, 0, 0, 0.6);
+
+	font-weight: 700;
+	line-height: 1;
+
+	.fa { margin-right: 8px }
+
+	&.blue {
+		background-color: #2185d0;
+		color: #fff;
+	}
+
+	&.red {
+		background-color: #db2828;
+		color: #fff;
+	}
+
+	&.mini { font-size: 0.6rem }
+	&.small { font-size: 0.7rem }
+}
+
+a.label {
+	&.blue:hover {
+		background-color: #1678c2;
+	}
+
+	&.red:hover {
+		background-color: #d01919;
+	}
 }
 
 .md {
@@ -171,19 +354,19 @@ footer, .last-modified {
 	figure {
 		width: auto;
 		margin: 0;
-		padding: 10px;
+		padding: 5px;
 		border: 1px solid #888;
 
 		img {
-			margin-left: auto;
-			margin-right: auto;
 			display: block;
+			margin-right: auto;
+			margin-left: auto;
 		}
 
 		figcaption {
 			margin-top: 5px;
-			text-align: center;
 			font-size: 0.9rem;
+			text-align: center;
 		}
 
 		&.left { margin-right: 10px; float: left }
@@ -199,6 +382,7 @@ footer, .last-modified {
 
 	table {
 		width: 100%;
+		border-collapse: collapse;
 
 		thead, tfoot { background-color: #f5f5f5 }
 

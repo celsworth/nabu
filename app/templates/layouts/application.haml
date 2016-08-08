@@ -10,42 +10,47 @@
 		// which could lead to issues if I try to use it later. Needs a think..
 		//= csrf_metatag
 
-		%link{href: '/dist/Semantic-2.1.8/semantic.min.css', rel: 'stylesheet'}
+		%link{href: '/dist/Font-Awesome-4.6.3/css/font-awesome.min.css', rel: 'stylesheet'}
+
 		= assets [ :css ]
 
 		%script{src: '/dist/jquery-2.2.0.min.js', type: 'text/javascript'}
 
 	%body
-		%nav.ui.inverted.secondary.menu.site-menu
-			.ui.container
-				%a.header.item{href: '/'} cae.me.uk
+		%nav.site-menu
+			.container
+				%nav.wrapper
+					%a.header.item{href: '/'}
+						cae.me.uk
+					%input#menu-toggle{type: 'checkbox'}
+						%label.label-toggle{for: 'menu-toggle'}
+							%i.fa.fa-bars
+					%ul
+						%a.item{href: '/p/caesium.cv'}
+							%li
+								CV
+						%a.item{href: '/p/projects'}
+							%li
+								Projects
+						%a.item{href: '/p/ref'}
+							%li
+								Reference
 
-				%a.link.item{href: '/p/caesium.cv'} CV
-				%a.link.item{href: '/p/projects'} Projects
-				%a.link.item{href: '/p/ref'} Reference
+						.right.item
+							%form.search{method: 'get', action: '/sitemap'}
+								%li
+									%input{type: 'text', name: 'search', value: @search, placeholder: 'Search...'}
 
-				.right.menu
-
-					-# if user.logged_in?
-						%a.link.item{href: '/account/logout'}= user.email
-					-# else
-						%a.link.item{href: '/account/login'}
-							%i.user.icon
-
-					%form.item{method: 'get', action: '/sitemap'}
-						.ui.mini.action.input
-							%input{type: 'text', name: 'search', value: @search, placeholder: 'Search...'}
-							%button.ui.mini.icon.button{type: 'submit'}
-								%i.search.icon
-
-		%main.ui.container
-			%aside.ui.orange.icon.message.under-construction
-				%i.red.warning.sign.icon
+		%main.container{class: ('editing' if @editing)}
+			%aside.message.under-construction
+				%i.fa.fa-warning
 				.content
-					%h1.header This site is under construction.
+					%h2.header This site is under construction.
 					%p
 						Beware of sharp edges and unfinished pages.
 						May contain broken links.
+
+				%img.right{alt: '1990s-style website construction sign', src: '/images/under_construction.png', style: 'width: 100px; height: auto'}
 
 			= yield
 
@@ -73,7 +78,6 @@
 					%a{href: '/p/projects.nabu'} Nabu
 
 
-		//%script{src: '/dist/Semantic-2.1.8/semantic.min.js', type: 'text/javascript'}
 		//%script{src: '/dist/jquery.pjax-1.9.6.js', type: 'text/javascript'}
 		%script{src: '/dist/smart-time-ago-0.1.5.js', type: 'text/javascript', defer: true}
 

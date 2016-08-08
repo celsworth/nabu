@@ -24,7 +24,7 @@ desc 'Run scss-lint'
 task :scss_lint do
 	require 'scss_lint'
 	require 'scss_lint/cli'
-	SCSSLint::CLI.new.run(['app/assets/css/app/app.scss'])
+	SCSSLint::CLI.new.run(['app/assets/css/app.scss'])
 end
 
 namespace :db do
