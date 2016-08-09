@@ -77,14 +77,13 @@
 					%a{href: '/p/projects.nabu'} Nabu
 
 
-		%script{src: '/dist/jquery-2.2.0.min.js', type: 'text/javascript'}
+		%script{src: '/dist/jquery-2.2.0.min.js', type: 'text/javascript', defer: true}
 		//%script{src: '/dist/jquery.pjax-1.9.6.js', type: 'text/javascript'}
-		%script{src: '/dist/smart-time-ago-0.1.5.js', type: 'text/javascript'}
+		%script{src: '/dist/smart-time-ago-0.1.5.js', type: 'text/javascript', defer: true}
 
-		/ empty
-		/= assets [ :js ]
+		= assets [ :js ]
 
 		:javascript
-			$(window).ready(function(){
+			addLoadEvent(function(){
 				$('body').timeago();
 			});
