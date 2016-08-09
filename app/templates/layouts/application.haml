@@ -12,7 +12,7 @@
 
 		%link{href: '/dist/Font-Awesome-4.6.3/css/font-awesome.min.css', rel: 'stylesheet'}
 
-		= assets [ :css ]
+		= assets :css
 
 
 	%body
@@ -81,9 +81,9 @@
 		//%script{src: '/dist/jquery.pjax-1.9.6.js', type: 'text/javascript'}
 		%script{src: '/dist/smart-time-ago-0.1.5.js', type: 'text/javascript', defer: true}
 
-		= assets [ :js ]
+		-# unused
+		-# = assets [ :js ]
 
+		-# can use addLoadEvent() if I ever need more than this block
 		:javascript
-			addLoadEvent(function(){
-				$('body').timeago();
-			});
+			window.onload = function(){ $('body').timeago() }
