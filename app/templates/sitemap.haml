@@ -1,11 +1,10 @@
 - title 'Sitemap'
 
 .md
-	%h1 Sitemap
-
-	%p
+	%h1
 		-# this won't scale far, but it doesn't have to.
 		-# tags and search are about all I want here for now.
+		Sitemap &mdash;
 		- if @tag
 			Pages tagged with
 			%em= CGI.escapeHTML @tag
@@ -13,7 +12,7 @@
 			Pages containing
 			%em= CGI.escapeHTML @search
 		- else
-			All pages.
+			All Pages
 
 	%ul.sitemap
 		- @sitemap.all do |page|
@@ -45,4 +44,12 @@
 					modified
 					%time.js-timeago{datetime: page.latest_published.created_at.iso8601}
 						= page.latest_published.created_at
+
+	%h2 Tag List
+	- Tag.where(cms_pages: @sitemap).order(:name).all do |tag|
+		%a.ui.mini.blue.label{href: "/sitemap/?tag=#{tag.name}"}
+			%i.fa.fa-tag
+			= tag.name
+
+
 
