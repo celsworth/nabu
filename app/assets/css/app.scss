@@ -347,8 +347,8 @@ a.label {
 
 	pre {
 		padding: 5px;
-		overflow-x: auto;
 		font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+		overflow-x: auto;
 	}
 
 	img {
@@ -379,8 +379,9 @@ a.label {
 
 	blockquote {
 		margin-left: 0;
-		padding: 10px 0 10px 10px;
-		border-left: 4px solid #999;
+		padding: 1px 0 1px 10px;
+		border-left: 10px solid #ccc;
+		background-color: #f9f9f9;
 		color: #999;
 	}
 
