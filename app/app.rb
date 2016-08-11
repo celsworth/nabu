@@ -1,4 +1,5 @@
 require 'roda'
+require 'autoprefixer-rails'
 
 class Nabu < Roda
 
@@ -7,13 +8,16 @@ class Nabu < Roda
 
 	use Rack::Session::Cookie, key: 'nabu.session', secret: 'RAAAAH'
 
-
 	plugin :assets, {
 		path: "#{__dir__}/assets", gzip: true,
 		css: %w( normalize.css app.scss coderay.css ),
-		css_compressor: :yui, # default, but being explicit..
+		css_compressor: :none, # default, but being explicit..
 		js: %w( app.js ),
-		js_compressor: :none # think :yui breaks because app.js is empty?
+		js_compressor: :none, # think :yui breaks because app.js is empty?
+
+		postprocessor: ->(file, type, content) do
+			type == :css ? AutoprefixerRails.process(content).css : content
+		end
 	}
 	plugin :csrf
 	plugin :delegate

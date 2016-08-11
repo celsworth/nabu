@@ -27,3 +27,6 @@ gem 'coderay'
 gem 'coderay_bash'
 gem 'scss-lint'
 gem 'yuicompressor'
+
+gem 'autoprefixer-rails'
+gem 'therubyracer'
