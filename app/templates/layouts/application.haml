@@ -73,11 +73,7 @@
 					%a{href: '/p/projects.nabu'} Nabu
 
 
-		%script{src: '/dist/jquery-2.2.0.min.js', type: 'text/javascript', defer: true}
-		%script{src: '/dist/smart-time-ago-0.1.5.js', type: 'text/javascript', defer: true}
-
-		-# unused
-		-# = assets [ :js ]
+		= assets [ :js ], defer: true
 
 		-# can use addLoadEvent() if I ever need more than this block
 		:javascript
