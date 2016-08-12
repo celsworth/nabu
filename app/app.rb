@@ -58,6 +58,11 @@ class Nabu < Roda
 
 		r.multi_route
 
+		# Apachetop README links here
+		r.on 'projects/apachetop' do
+			r.redirect '/p/projects.apachetop', 301
+		end
+
 		r.root do
 			r.redirect '/p/home'
 		end
