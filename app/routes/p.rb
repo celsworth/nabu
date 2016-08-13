@@ -10,18 +10,27 @@ class Nabu
 
 		r.on :pagename do |pagename|
 
-			# TODO: caching
 			@page = CmsPage[name: pagename] || CmsPage.new(name: pagename)
-			@pv = @page&.latest_visible(user)
+
+			@pv = if user.is_admin? && pv = r.params['pv']
+							# facility to view old versions for admin
+							CmsPageVersion[page: @page, id: pv] or r.halt 404
+						else
+							# don't 404 for admins, we may want to create the page
+								@page&.latest_visible(user) or (r.halt 404 unless user.is_admin?)
+						end
 
 			# For now I intentionally haven't done a #visible check here;
 			# if someone knows the name of a page then I probably gave them
 			# it so they can view it. See how that logic goes..
 
-			r.halt 404 unless @pv or user.is_admin?
-
 			r.is do
+				# caching only active for guests; not admin
+				# using r.path as the cache key is for ngx_http_memcached_module
+				# (even without using that, this doubles Nabu's throughput)
+				cache(r.path, cache_if: ->(){ !user.is_admin? }) do
 				render 'p/view'
+			end
 			end
 
 			r.is 'edit' do
