@@ -11,9 +11,9 @@ class Nabu < Roda
 	plugin :assets, {
 		path: "#{__dir__}/assets", gzip: true,
 		css: %w( normalize.css app.scss coderay.css ),
-		css_compressor: :none, # default, but being explicit..
-		js_compressor: :none, # think :yui breaks because app.js is empty?
+		css_compressor: :yui, # default, but being explicit..
 		js: %w( jquery-2.2.0.min.js smart-time-ago-0.1.5.js ),
+		js_compressor: :yui,
 
 		postprocessor: ->(file, type, content) do
 			type == :css ? AutoprefixerRails.process(content).css : content
