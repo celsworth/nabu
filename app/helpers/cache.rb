@@ -17,7 +17,9 @@ class Nabu
 		return @@dc.delete(key) if ttl == 0
 
 		# return the value if the cache finds it
-		return val if val = @@dc.get(key)
+		if val = @@dc.get(key)
+			return val
+		end
 
 		# otherwise, set the cache value
 		@@dc.set(key, val, ttl) if val = yield
