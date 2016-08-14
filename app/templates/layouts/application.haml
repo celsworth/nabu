@@ -6,6 +6,9 @@
 		%title= [ title, '[cae.me.uk]' ].compact.join(' ')
 		%meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
 
+		-# stops favicon.ico requests which will just 404 anyway
+		%link{rel: 'icon', type: 'image/png', href: 'data:image/png;base64,iVBORw0KGgo='}
+
 		%link{href: '/dist/Font-Awesome-4.6.3/css/font-awesome.min.css', rel: 'stylesheet'}
 
 		= assets :css
