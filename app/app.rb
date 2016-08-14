@@ -19,6 +19,7 @@ class Nabu < Roda
 			type == :css ? AutoprefixerRails.process(content).css : content
 		end
 	}
+	plugin :caching
 	plugin :csrf
 	plugin :delegate
 	request_delegate :logger # expose rack.logger as logger
