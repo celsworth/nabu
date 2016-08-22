@@ -26,7 +26,7 @@
 -# on this page only, load jquery immediately, so I can setup the editor
 -# without window.ready stuff. This page is for me only so I'm not worried
 -# about performance here.
-%script{src: '/assets/js/jquery-3.1.0.min.js', type: 'text/javascript'}
+= assets [ :js, :jquery ]
 %script{src: '/dist/ace-builds/src-min/ace.js', type: 'text/javascript'}
 
 :javascript
