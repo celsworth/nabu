@@ -9,7 +9,7 @@ class Nabu < Roda
 	use Rack::Session::Cookie, key: 'nabu.session', secret: 'RAAAAH'
 
 	plugin :assets, {
-		path: "#{__dir__}/assets", gzip: true,
+		path: "app/assets", gzip: true,
 		css: %w( normalize.css app.scss coderay.css ),
 		css_compressor: :yui, # default, but being explicit..
 		js: {

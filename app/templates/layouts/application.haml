@@ -76,7 +76,8 @@
 					%a{href: '/p/projects.nabu'} Nabu
 
 
-		= assets [ :js ], defer: true
+		= assets [ :js, :jquery ], defer: true
+		= assets [ :js, :sta ], defer: true
 
 		-# can use addLoadEvent() if I ever need more than this block
 		:javascript
