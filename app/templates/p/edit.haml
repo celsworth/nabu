@@ -14,6 +14,8 @@
 		%input{type: 'text', placeholder: 'Title', name: 'display_title', value: @pv&.display_title}
 		%input{type: 'text', placeholder: 'Tags', name: 'tags', value: @page.tags.map(&:name).join(',')}
 
+		%span#js-format-table.small.blue.label Format Table
+
 .edit-pane
 	-# don't leave an empty line under :preserve or it ends up getting
 	-# appending to Ace's buffer and being saved!
@@ -27,6 +29,10 @@
 -# without window.ready stuff. This page is for me only so I'm not worried
 -# about performance here.
 = assets [ :js, :jquery ]
+
+-# and the markdown table formatter, which is only used here anyway
+= assets [ :js, :admin ]
+
 %script{src: '/dist/ace-builds/src-min/ace.js', type: 'text/javascript'}
 
 :javascript
@@ -56,6 +62,12 @@
 	});
 
 	// on save, copy editor contents into textarea for submission
-	$('#js-edit-form').submit(function(){
+	$('#js-edit-form').submit(function() {
 		$('#js-hidden-ta').val(editor.getSession().getValue());
+	});
+
+	$('#js-format-table').click(function() {
+	    var mtf = new MarkdownTableFormatter();
+		mtf.format_table(editor.getSelectedText());
+		editor.session.replace(editor.selection.getRange(), mtf.output_table);
 	});
