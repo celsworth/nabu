@@ -21,12 +21,13 @@ gem 'bcrypt'
 gem 'rack_csrf'
 gem 'kramdown'
 gem 'dalli'
+gem 'kgio' # performance boost for dalli
 gem 'haml'
 gem 'sass'
 gem 'coderay'
 gem 'coderay_bash'
 gem 'scss-lint'
 gem 'yuicompressor'
-
 gem 'autoprefixer-rails'
-gem 'therubyracer'
+gem 'therubyracer' # for autoprefixer
+gem 'diffy'

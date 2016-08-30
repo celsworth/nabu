@@ -1,0 +1,24 @@
+.md
+	%form{method: 'get', action: "/p/#{@page.name}/compare"}
+		%button{type: 'submit'} Compare
+		%table
+			- @page.versions.each do |pv|
+				%tr
+					%td
+						%input{name: 'id1', type: 'radio', value: pv.id}
+						%input{name: 'id2', type: 'radio', value: pv.id}
+
+					%td
+						%a{href: "/p/#{@page.name}?pv=#{pv.id}"}= pv.id
+
+					%td
+						%i.fa.fa-calendar
+						= pv.created_at
+						&mdash;
+						%time.js-timeago{datetime: pv.created_at.iso8601}
+
+
+					%td
+						%i.fa.fa-file
+						= pv.content.length
+						bytes

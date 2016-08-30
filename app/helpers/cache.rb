@@ -2,27 +2,30 @@ require 'dalli'
 
 class Nabu
 
-	EMPTY_OPTS = {}.freeze
-
 	@@dc = Dalli::Client.new
 
-	def cache(key, opts = EMPTY_OPTS, cache_if: nil)
-		# if cache_if is a callable proc which returns false,
-		# immediately return the contents of our block, don't cache anything.
-		return yield if cache_if && !cache_if.call
-
-		ttl = opts.fetch(:ttl, 60)
+	def cache(key, ttl: 60, cache: true)
+		# immediately return the contents of our block if we're asked not to cache
+		if !cache && block_given?
+			return yield
+		end
 
 		# ttl of 0 is a shortcut for "delete this key".
-		return @@dc.delete(key) if ttl == 0
+		if ttl == 0
+			return @@dc.delete(key)
+		end
 
 		# return the value if the cache finds it
 		if val = @@dc.get(key)
 			return val
 		end
 
-		# otherwise, set the cache value
-		@@dc.set(key, val, ttl) if val = yield
+		# if there's no block, it was just querying the cache, not setting it
+		return nil unless block_given?
+
+		# set the cache value
+		val = yield
+		@@dc.set(key, val, ttl)
 
 		# and return that value
 		val

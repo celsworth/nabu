@@ -1,7 +1,13 @@
 - if user.is_admin?
-	%a.small.red.label{style: 'position: fixed; top: 10px; right: 10px', href: "/p/#{@page.name}/edit"}
-		%i.fa.fa-cogs
-		Edit
+	%div{style: 'position: fixed; top: 10px; right: 10px'}
+		%a.small.blue.label{href: "/p/#{@page.name}/history"}
+			%i.fa.fa-history
+			History
+
+		%a.small.red.label{href: "/p/#{@page.name}/edit"}
+			%i.fa.fa-cogs
+			Edit
+
 
 - title @pv&.display_title
 
