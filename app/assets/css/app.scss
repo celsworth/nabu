@@ -45,18 +45,12 @@
 	}
 }
 
+html {
+	color: #333;
 
-
-html, body {
+	// 18px, 1.4 line height
 	// https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-
-	font-size: 18px;
-}
-
-html, body, p {
-	// also on p so varying font-size inherits the correct line-height
-	line-height: 1.4;
+	font: 18px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 a {
@@ -68,8 +62,7 @@ a {
 
 .site-menu {
 	margin-bottom: 1em;
-	background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
-	background-repeat: no-repeat;
+	background: #446e9b linear-gradient(#6d94bf, #446e9b 50%, #3e648d) no-repeat;
 
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 
@@ -89,7 +82,7 @@ a {
 		color: rgba(255, 255, 255, 0.70);
 
 		&:hover {
-			background-color: rgba(255, 255, 255, 0.08);
+			background: rgba(255, 255, 255, 0.08);
 			color: #fff;
 		}
 	}
@@ -162,20 +155,20 @@ a {
 		width: 70px;
 		padding: 0.5em 1em;
 
-		transition: background-color 0.2s ease, width 0.2s ease;
+		transition: background 0.2s ease, width 0.2s ease;
 
 		border: 1px solid rgba(34, 36, 38, .15);
 		border-radius: 0.4rem;
 
 		outline: 0;
-		background-color: rgba(255, 255, 255, 0.9);
+		background: rgba(255, 255, 255, 0.9);
 
 		font-size: 0.7rem;
 		line-height: 1.1;
 
 		&:focus {
 			width: 140px;
-			background-color: #fff;
+			background: #fff;
 
 			&::placeholder { color: rgba(0, 0, 0, 0.9) }
 		}
@@ -211,14 +204,14 @@ footer, .last-modified {
 	min-width: 200px;
 	margin-left: 20px;
 	float: right;
-	background-color: #f4f7f8;
+	background: #f4f7f8;
 	font-size: 0.8rem;
 
 	a {
 		display: block;
 		padding: 5px 10px;
 
-		&:hover { background-color: #eee }
+		&:hover { background: #eee }
 	}
 
 	li {
@@ -238,7 +231,7 @@ footer, .last-modified {
 	li {
 		margin-bottom: 12px;
 		padding: 0 8px;
-		background-color: #f5f5f5;
+		background: #f5f5f5;
 	}
 }
 
@@ -256,7 +249,7 @@ footer, .last-modified {
 	display: flex;
 	margin: 1em 0;
 	border-radius: 0.4rem;
-	background-color: #ffedde;
+	background: #ffedde;
 	color: #f2711c;
 	box-shadow: 0 0 0 1px rgba(34, 36, 38, .22) inset, 0 0 0 0 transparent;
 	align-items: center;
@@ -294,7 +287,7 @@ footer, .last-modified {
 	padding: 7px 10px;
 	border-radius: 0.3rem;
 
-	background-color: #e8e8e8;
+	background: #e8e8e8;
 	color: rgba(0, 0, 0, 0.6);
 
 	font-weight: 700;
@@ -303,12 +296,12 @@ footer, .last-modified {
 	.fa { margin-right: 8px }
 
 	&.blue {
-		background-color: #2185d0;
+		background: #2185d0;
 		color: #fff;
 	}
 
 	&.red {
-		background-color: #db2828;
+		background: #db2828;
 		color: #fff;
 	}
 
@@ -318,11 +311,11 @@ footer, .last-modified {
 
 a.label {
 	&.blue:hover {
-		background-color: #1678c2;
+		background: #1678c2;
 	}
 
 	&.red:hover {
-		background-color: #d01919;
+		background: #d01919;
 	}
 }
 
@@ -409,7 +402,7 @@ a.label {
 		width: 100%;
 		border-collapse: collapse;
 
-		thead, tfoot { background-color: #f5f5f5 }
+		thead, tfoot { background: #f5f5f5 }
 
 		th {
 			text-align: left;
