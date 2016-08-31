@@ -343,12 +343,6 @@ a.label {
 		text-align: center;
 	}
 
-	pre {
-		padding: 5px;
-		font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-		overflow-x: auto;
-	}
-
 	img {
 		height: auto;
 	}
@@ -379,22 +373,49 @@ a.label {
 		margin: 1em;
 		padding: 1px 0 1px 10px;
 		border-left: 10px solid #ccc;
-		background-color: #f9f9f9;
+		background: #f9f9f9;
 		color: #999;
 	}
 
+	code, kbd, pre {
+		font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+	}
+
+	pre {
+		padding: 5px;
+		overflow-x: auto;
+	}
+
+	code, kbd {
+		padding: 4px 10px 2px; // less on bottom than top, fools the eye
+	}
+
 	code {
-		background-color: #fee9cc;
+		//border: 1px solid #e5e5e5;
+		//background-color: #f7f7f7;
+
+		border: 1px solid #e7a855;
+		background: #fee9cc;
+		color: #000;
+	}
+
+	kbd {
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		background: #eaecee;
+		font-size: 0.8rem;
+		text-shadow: 0 1px 0 #fff;
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
 	}
 
 	ins {
-		background-color: #dfd;
+		background: #dfd;
 		color: #080;
 		text-decoration: none;
 	}
 
 	del {
-		background-color: #fee;
+		background: #fee;
 		color: #b00
 	}
 
