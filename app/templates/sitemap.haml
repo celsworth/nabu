@@ -2,16 +2,25 @@
 
 .md
 	%h1
+		Sitemap
+
+	%p
 		-# this won't scale far, but it doesn't have to.
 		-# tags and search are about all I want here for now.
-		Sitemap &mdash;
-		- if @tag
-			Pages tagged with
-			%em= CGI.escapeHTML @tag
-		- elsif @search
+		- all_pages = true
+
+		- if @search
 			Pages containing
-			%em= CGI.escapeHTML @search
-		- else
+			%em= CGI.escapeHTML @search # user input!
+			- all_pages = false
+
+		- if @tags&.any?
+			= @search ? 'and' : 'Pages' # ick.
+			tagged with
+			= @tags.map{|tag| "<em>#{tag.name}</em>"}.join(', ')
+			- all_pages = false
+
+		- if all_pages
 			All Pages
 
 	%ul.sitemap
@@ -25,7 +34,7 @@
 				%br
 
 				- page.tags.each do |tag|
-					%a.ui.mini.blue.label{href: "/sitemap/?tag=#{tag.name}"}
+					%a.ui.mini.blue.label{href: "/sitemap/?tags=#{tag.name}"}
 						%i.fa.fa-tag
 						= tag.name
 
@@ -47,7 +56,7 @@
 
 	%h2 Tag List
 	- Tag.where(cms_pages: @sitemap).order(:name).all do |tag|
-		%a.ui.mini.blue.label{href: "/sitemap/?tag=#{tag.name}"}
+		%a.ui.mini.blue.label{href: "/sitemap/?tags=#{tag.name}"}
 			%i.fa.fa-tag
 			= tag.name
 

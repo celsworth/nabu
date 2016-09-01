@@ -10,10 +10,12 @@ class Nabu
 			# only admin can see private pages
 			@sitemap = @sitemap.visible unless user.is_admin?
 
-			if (@tag = r.params['tag']) && (t = Tag[name: @tag])
-				# tag filtering, if set.
-				@sitemap = @sitemap.where(tags: t)
-			elsif @search = r.params['search']
+			if tags = r.params['tags']
+				# tag filtering, if set. find pages with all tags
+				@tags = Tag.where(name: Array(tags)).order(:name)
+				@tags.all{|tag| @sitemap = @sitemap.where(tags: tag) }
+			end
+			if @search = r.params['search']
 				# search query, if set.
 				@sitemap = @sitemap.search(@search)
 			end
