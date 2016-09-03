@@ -1,49 +1,14 @@
-@media only screen and (max-width:767px) {
-	.container {
-		width: auto;
-		margin-right: 1em;
-		margin-left: 1em;
-	}
+@import 'include-media';
 
-	// save some space on mobile layout
-	.under-construction {
-		.content { padding: 5px }
-		i, img { display: none !important }
-	}
-}
-
-@media only screen and (min-width:768px) and (max-width:991px) {
-	.container {
-		width: 723px;
-		margin-right: auto;
-		margin-left: auto;
-	}
-}
-
-@media only screen and (min-width:992px) and (max-width:1199px) {
-	.container {
-		width: 933px;
-		margin-right: auto;
-		margin-left: auto;
-	}
-}
-
-@media only screen and (min-width:1200px) {
-	.container {
-		width: 1127px;
-		margin-right: auto;
-		margin-left: auto;
-	}
-}
-
-// special one for editing page, super-wide
-@media only screen and (min-width:2000px) {
-	.container.editing {
-		width: auto;
-		margin-right: 1em;
-		margin-left: 1em;
-	}
-}
+$breakpoints: (
+	tablet: 768px,
+	desktop: 1200px,
+	huge: 2000px
+);
+$mobile: 'screen', '<tablet';
+$tablet: 'screen', '>=tablet', '<desktop';
+$desktop: 'screen', '>=desktop';
+$huge: 'screen', '>=huge';
 
 html {
 	color: #333;
@@ -51,13 +16,37 @@ html {
 	// 18px, 1.4 line height
 	// https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
 	font: 18px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+	// a saner font-size for printing, otherwise it looks huuuuuge
+	@include media('print') { font-size: 12pt }
 }
 
 a {
 	color: #4183c4;
 	text-decoration: none;
 
+	// make links stand out in print, and suffix the URL since they're
+	// obviously not clickable anymore.
+	@include media('print') {
+		color: #06c;
+
+		&[href^="http"]:after {
+			font-size: smaller;
+			font-style: italic;
+			content: ' <' attr(href) '>';
+		}
+	}
+
 	&:hover { color: #1e70bf }
+}
+
+.container {
+	margin: 0 auto;
+
+	@include media($mobile...) { margin: 0 1em }
+	@include media($tablet...) { width: 723px }
+	@include media($desktop...) { width: 1127px }
+	@include media($huge...) { &.editing { width: auto } }
 }
 
 .site-menu {
@@ -66,43 +55,10 @@ a {
 
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 
-	.item {
-		display: inline-block;
-		margin: 0 2px;
-		padding: 10px 20px;
-		border-radius: 0.3rem;
+	// maybe use another simpler header for printing?
+	@include media('print') { display: none }
 
-		&.header { font-weight: 600 }
-	}
-
-	.right { margin-left: auto !important }
-
-	a {
-		transition: color 0.1s ease;
-		color: rgba(255, 255, 255, 0.70);
-
-		&:hover {
-			background: rgba(255, 255, 255, 0.08);
-			color: #fff;
-		}
-	}
-
-	ul {
-		display: flex;
-		width: 100%;
-		margin: 0;
-		align-items: center;
-		list-style-type: none;
-	}
-
-	#menu-toggle, .label-toggle { display: none }
-
-	.wrapper {
-		display: flex;
-		align-items: center;
-	}
-
-	@media screen and (max-width: 768px) {
+	@include media($mobile...) {
 		ul {
 			height: 0;
 			padding: 0;
@@ -143,6 +99,42 @@ a {
 				width: 100%;
 			}
 		}
+	}
+
+	.item {
+		display: inline-block;
+		margin: 0 2px;
+		padding: 10px 20px;
+		border-radius: 0.3rem;
+
+		&.header { font-weight: 600 }
+	}
+
+	.right { margin-left: auto !important }
+
+	a {
+		transition: color 0.1s ease;
+		color: rgba(255, 255, 255, 0.70);
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.08);
+			color: #fff;
+		}
+	}
+
+	ul {
+		display: flex;
+		width: 100%;
+		margin: 0;
+		align-items: center;
+		list-style-type: none;
+	}
+
+	#menu-toggle, .label-toggle { display: none }
+
+	.wrapper {
+		display: flex;
+		align-items: center;
 	}
 }
 
@@ -202,6 +194,8 @@ footer, .last-modified {
 	background: #f4f7f8;
 	font-size: 0.8rem;
 
+	@include media('print') { display: none }
+
 	a {
 		display: block;
 		padding: 5px 10px;
@@ -248,6 +242,14 @@ footer, .last-modified {
 	color: #f2711c;
 	box-shadow: 0 0 0 1px rgba(34, 36, 38, .22) inset, 0 0 0 0 transparent;
 	align-items: center;
+
+	@include media('print') { display: none }
+
+	@include media($mobile...) {
+		// save some space on mobile layout
+		.content { padding: 5px }
+		i, img { display: none !important }
+	}
 
 	.fa, p { opacity: 0.85 }
 
@@ -315,7 +317,12 @@ a.label {
 }
 
 .md {
-	h1, h2, h3, h4, h5, h6 { color: #446e9b }
+	h1, h2, h3, h4, h5, h6 {
+		color: #446e9b;
+
+		@include media('print') { page-break-after: avoid }
+	}
+
 	h1 { font-size: 36px }
 	h2 { font-size: 30px }
 	h3 { font-size: 24px }
