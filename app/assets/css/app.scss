@@ -93,10 +93,6 @@ a {
 		margin: 0;
 		align-items: center;
 		list-style-type: none;
-
-		.item {
-			display: inline-block;
-		}
 	}
 
 	#menu-toggle, .label-toggle { display: none }
@@ -143,7 +139,7 @@ a {
 		}
 
 		.search {
-			li, input {
+			input {
 				width: 100%;
 			}
 		}
@@ -152,10 +148,10 @@ a {
 
 .search {
 	input {
-		width: 70px;
+		width: 140px;
 		padding: 0.5em 1em;
 
-		transition: background 0.2s ease, width 0.2s ease;
+		transition: background 0.2s ease;
 
 		border: 1px solid rgba(34, 36, 38, .15);
 		border-radius: 0.4rem;
@@ -167,7 +163,6 @@ a {
 		line-height: 1.1;
 
 		&:focus {
-			width: 140px;
 			background: #fff;
 
 			&::placeholder { color: rgba(0, 0, 0, 0.9) }
