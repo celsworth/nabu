@@ -20,9 +20,11 @@
 				%nav.wrapper
 					%a.header.item{href: '/'}
 						cae.me.uk
+
 					%input#menu-toggle{type: 'checkbox'}
 						%label.label-toggle{for: 'menu-toggle'}
 							%i.fa.fa-bars
+
 					%ul
 						%a.item{href: '/p/caesium.cv'}
 							%li
@@ -59,7 +61,7 @@
 					%a{href: 'https://creativecommons.org/licenses/by-nc-nd/4.0/'} CC Attribution-NonCommercial-NoDerivatives 4.0 International
 
 			%p
-				- subdomain = SecureRandom.hex[0..5]
+				- subdomain = SecureRandom.hex[0..2]
 				- email = "chris@#{subdomain}.cae.me.uk"
 				Copyright &copy; Chris Elsworth
 				= succeed '.' do
