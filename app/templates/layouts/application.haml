@@ -39,6 +39,7 @@
 						.right.item
 							%form.search{method: 'get', action: '/sitemap'}
 								%li
+									%i.fa.fa-search
 									%input{type: 'text', name: 'search', value: @search, placeholder: 'Search...'}
 
 		%main.container{class: ('editing' if @editing)}
