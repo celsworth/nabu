@@ -10,6 +10,8 @@ $tablet: 'screen', '>=tablet', '<desktop';
 $desktop: 'screen', '>=desktop';
 $huge: 'screen', '>=huge';
 
+$notmobile: 'screen', '>=tablet';
+
 html {
 	color: #333;
 
@@ -49,30 +51,38 @@ a {
 	@include media($huge...) { &.editing { width: auto } }
 }
 
-.site-menu {
+.site-menu { // header
 	margin-bottom: 1rem;
 	background: #446e9b linear-gradient(#6d94bf, #446e9b 50%, #3e648d) no-repeat;
+	//background: linear-gradient(#2a3a7e, #456bd9) no-repeat;
+	//background: #3e648d;
 
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	.container {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
 
-	// maybe use another simpler header for printing?
-	@include media('print') { display: none }
-
-	#menu-toggle, .label-toggle { display: none }
-
-	.item {
-		display: inline-block;
-		padding: 0.5rem 1rem;
-		border-radius: 0.3rem;
-
-		&.header { font-weight: 600 }
+		@include media($mobile...) {
+			// expand menu links to the edges on mobile
+			margin: 0;
+		}
 	}
 
-	.right { margin-left: auto !important }
+	.header { font-weight: 600 }
+
+	[type="checkbox"] { display: none }
 
 	a {
-		transition: color 0.1s ease;
-		color: rgba(255, 255, 255, 0.70);
+		display: block;
+		padding: 0.5rem 1.5rem;
+		transition: color 0.2s ease;
+		color: rgba(255, 255, 255, 0.8);
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+
+		@include media($notmobile...) {
+			margin: 0.1rem 0;
+			border-radius: 0.3rem;
+		}
 
 		&:hover {
 			background: rgba(255, 255, 255, 0.08);
@@ -80,66 +90,66 @@ a {
 		}
 	}
 
-	ul {
-		display: flex;
-		width: 100%;
-		margin: 0;
-		align-items: center;
-		list-style-type: none;
+	label { // hamburger menu icon
+		margin: 0 1rem;
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 2rem;
+		cursor: pointer;
+		order: 9;
+
+		@include media($notmobile...) {
+			display: none;
+		}
+
+		&:hover { color: rgba(255, 255, 255, 1) }
 	}
 
 
-	.wrapper {
-		display: flex;
-		align-items: center;
-	}
-
-	@include media($mobile...) {
-		ul {
+	nav {
+		@include media($mobile...) {
 			height: 0;
-			padding: 0;
+			transform: translateY(-100%);
 			transition: all 0.5s ease;
 			opacity: 0;
 			visibility: hidden;
-			flex-flow: row wrap;
-			justify-content: space-between;
+			flex: 100%;
+			order: -1;
 
-			.item { display: block }
+			a {
+				border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+				text-align: center;
+			}
 		}
 
-		#menu-toggle:checked ~ ul {
-			height: 100px;
-			opacity: 1;
-			visibility: visible;
-		}
-
-		.label-toggle {
-			display: inline;
-			float: right;
-			color: rgba(255, 255, 255, 0.8);
-			font-size: 2rem;
-			cursor: pointer;
-
-			&:hover { color: rgba(255, 255, 255, 1) }
-		}
-
-		.wrapper { display: block }
-
-		.right {
+		ul {
 			margin: 0;
-			flex-grow: 10;
-		}
+			padding: 0;
+			list-style: none;
 
-		.search {
-			input {
-				width: 100%;
+			@include media($notmobile...) {
+				display: flex;
+				flex-wrap: nowrap;
 			}
 		}
 	}
+
+	[type="checkbox"]:checked ~ nav {
+		@include media($mobile...) {
+			// based on 3 rows:
+			// ((1rem*1.4 text + 1rem margin) + 2px margin) * 3
+			height: calc((2px + 2.4rem) * 3);
+			transform: translateY(0);
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	.search { margin-left: auto }
 }
 
 .search {
 	position: relative;
+	margin: 0 1rem;
 	font-size: 0.7rem;
 
 	i {
@@ -147,12 +157,10 @@ a {
 		top: 50%;
 		left: 0.3rem;
 		transform: perspective(1px) translateY(-50%);
-		text-shadow: none;
 		opacity: 0.5;
 	}
 
 	input {
-		width: 8rem;
 		padding: 0.3rem 1rem 0.3rem 1.5rem;
 
 		transition: background 0.2s ease;
@@ -162,6 +170,10 @@ a {
 
 		outline: 0;
 		background: rgba(255, 255, 255, 0.9);
+
+		// mobile doesn't have much space!
+		@include media($mobile...) { width: 4rem }
+		@include media($notmobile...) { width: 8rem }
 
 		&:focus {
 			background: #fff;

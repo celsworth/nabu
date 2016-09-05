@@ -15,32 +15,26 @@
 
 
 	%body
-		%nav.site-menu
+		%header.site-menu
 			.container
-				%nav.wrapper
-					%a.header.item{href: '/'}
-						cae.me.uk
+				%a.header{href: '/'} cae.me.uk
 
-					%input#menu-toggle{type: 'checkbox'}
-						%label.label-toggle{for: 'menu-toggle'}
-							%i.fa.fa-bars
+				%input#menu-toggle{type: 'checkbox'}
+				%label{for: 'menu-toggle'}
+					%i.fa.fa-bars
 
+				%nav
 					%ul
-						%a.item{href: '/p/caesium.cv'}
-							%li
-								CV
-						%a.item{href: '/p/projects'}
-							%li
-								Projects
-						%a.item{href: '/p/ref'}
-							%li
-								Reference
+						%li
+							%a{href: '/p/caesium.cv'} CV
+						%li
+							%a{href: '/p/projects'} Projects
+						%li
+							%a{href: '/p/ref'} Reference
 
-						.right.item
-							%form.search{method: 'get', action: '/sitemap'}
-								%li
-									%i.fa.fa-search
-									%input{type: 'text', name: 'search', value: @search, placeholder: 'Search...'}
+				%form.search{method: 'get', action: '/sitemap'}
+					%i.fa.fa-search
+					%input{type: 'text', name: 'search', value: @search, placeholder: 'Search'}
 
 		%main.container{class: ('editing' if @editing)}
 			%aside.message.under-construction
