@@ -137,7 +137,9 @@ a {
 		@include media($mobile...) {
 			// based on 3 rows:
 			// ((1rem*1.4 text + 1rem margin) + 2px margin) * 3
-			height: calc((2px + 2.4rem) * 3);
+			// note the double minus. yuicompressor has an outstanding
+			// bug that removes the required spacing around + operators.
+			height: calc((2.4rem - -2px) * 3);
 			transform: translateY(0);
 			opacity: 1;
 			visibility: visible;
