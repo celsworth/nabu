@@ -70,7 +70,7 @@ a {
 
 	.header { font-weight: 600 }
 
-	[type="checkbox"] { display: none }
+	input[type="checkbox"] { display: none }
 
 	a {
 		display: block;
@@ -133,12 +133,11 @@ a {
 		}
 	}
 
-	[type="checkbox"]:checked ~ nav {
+	input[type="checkbox"]:checked ~ nav {
 		@include media($mobile...) {
-			// based on 3 rows:
-			// ((1rem*1.4 text + 1rem margin) + 2px margin) * 3
-			// note the double minus. yuicompressor has an outstanding
-			// bug that removes the required spacing around + operators.
+			// ((1rem*1.4 text + 1rem margin) + 2px margin) * 3 rows
+			// Using - - instead of + is a workaround for a yui-compressor
+			// issue, see https://github.com/yui/yuicompressor/issues/59
 			height: calc((2.4rem - -2px) * 3);
 			transform: translateY(0);
 			opacity: 1;
@@ -185,16 +184,6 @@ a {
 	}
 }
 
-.edit-pane {
-	width: 50%;
-	float: left;
-}
-
-.preview-pane {
-	width: 50%;
-	float: left;
-}
-
 footer, .last-modified {
 	margin-top: 2rem;
 	clear: both; // in case markdown page has a float in it
@@ -207,7 +196,7 @@ footer, .last-modified {
 
 #markdown-toc, #markdown-toc ul {
 	padding: 0;
-	list-style-type: none;
+	list-style: none;
 }
 
 #markdown-toc { // ul
@@ -238,13 +227,18 @@ footer, .last-modified {
 
 .sitemap { // ul
 	padding: 0;
-	list-style-type: none;
+	list-style: none;
 
 	li {
 		margin-bottom: 0.5rem;
 		padding: 0 0.5rem;
 		background: #f5f5f5;
 	}
+}
+
+.edit-pane, .preview-pane {
+	width: 50%;
+	float: left;
 }
 
 #editor, .md-preview {
