@@ -17,7 +17,7 @@ class CmsPageVersion < Sequel::Model
 		# can add pre/post-processing here later
 		kramdown = Kramdown::Document.new(content,
 																			input: 'GFM',
-																			toc_levels: 2..6,
+																			toc_levels: 2..4,
 																			syntax_highlighter: 'coderay',
 																			syntax_highlighter_opts: sh_opts)
 

@@ -264,7 +264,7 @@ footer, .last-modified {
 		// h1 not in TOC. h2 has no indent.
 		li a { padding-left: 1rem } // h3
 		li li a { padding-left: 2rem } // h4
-		li li li a { padding-left: 3rem } // h5
+		// h5 and h6 aren't put into the TOC
 	}
 }
 
