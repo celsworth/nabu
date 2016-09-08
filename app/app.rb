@@ -8,6 +8,20 @@ class Nabu < Roda
 
 	use Rack::Session::Cookie, key: 'nabu.session', secret: 'RAAAAH'
 
+	# AutoprefixerRails configuration.
+	BROWSERLIST = [
+		'>0.5%',
+
+		# its so bad on IE9 and below its not even worth trying.
+		'IE >= 10', 'not IE < 10',
+
+		# these were an alternative way to avoid the -webkit-transition-property
+		# problem (see app.scss). But they remove a large subset of browsers
+		# (as of Sept 2016, 10% of users) for one small problem that is better
+		# fixed on the problematic CSS itself.
+		#'not Android < 40', 'not and_uc < 40', 'not Chrome < 40',
+	].freeze
+
 	plugin :assets, {
 		path: 'app/assets', gzip: true,
 		css: %w( normalize.css app.scss coderay.css ),
@@ -20,7 +34,8 @@ class Nabu < Roda
 		js_compressor: :yui,
 
 		postprocessor: ->(file, type, content) do
-			type == :css ? AutoprefixerRails.process(content).css : content
+			type == :css ?
+				AutoprefixerRails.process(content, browsers: BROWSERLIST).css : content
 		end
 	}
 	plugin :caching
