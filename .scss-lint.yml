@@ -7,7 +7,7 @@ linters:
   ColorVariable:
     enabled: false
   Comment:
-    enabled: true
+    enabled: false
   DeclarationOrder:
     enabled: true
   DuplicateProperty:
@@ -21,7 +21,7 @@ linters:
   HexNotation:
     enabled: true
   IdSelector:
-    enabled: true
+    enabled: false
   ImportantRule:
     enabled: false
   ImportPath:
