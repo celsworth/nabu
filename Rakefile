@@ -27,6 +27,11 @@ task :scss_lint do
 	SCSSLint::CLI.new.run(['app/assets/css/app.scss'])
 end
 
+task :browserlist => :boot do
+	require File.expand_path 'app/app', __dir__
+	puts AutoprefixerRails.processor(browsers: Nabu::BROWSERLIST).info
+end
+
 namespace :db do
 	desc 'Load the seed data from db/seeds.rb'
 	task :seed => :boot do
