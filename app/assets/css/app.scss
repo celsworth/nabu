@@ -12,6 +12,9 @@ $huge: 'screen', '>=huge';
 
 $notmobile: 'screen', '>=tablet';
 
+$hamburger-linewidth: 0.2rem;
+$hamburger-animation-duration: .2s;
+
 html {
 	color: #333;
 
@@ -70,8 +73,6 @@ a {
 
 	.header { font-weight: 600 }
 
-	input[type="checkbox"] { display: none }
-
 	a {
 		display: block;
 		padding: 0.5rem 1.5rem;
@@ -91,19 +92,44 @@ a {
 	}
 
 	label { // hamburger menu icon
+		height: $hamburger-linewidth * 5;
 		margin: 0 1rem;
-		color: rgba(255, 255, 255, 0.8);
-		font-size: 2rem;
 		cursor: pointer;
-		order: 9;
+		order: 5;
 
-		@include media($notmobile...) {
-			display: none;
+		@include media($mobile...) { display: block }
+		@include media($notmobile...) { display: none }
+
+		span, span::before, span::after {
+			display: block;
+			width: $hamburger-linewidth * 6;
+			height: $hamburger-linewidth;
+			background: rgba(255, 255, 255, 0.8);
 		}
 
-		&:hover { color: rgba(255, 255, 255, 1) }
-	}
+		span {
+			position: relative;
+			top: $hamburger-linewidth * 2;
+			transition-duration: 0s;
+			transition-delay: $hamburger-animation-duration;
 
+			&::before, &::after {
+				/* autoprefixer: off */
+				// turning autoprefixer off here because it adds another
+				// -webkit-transition-property with -webkit-transform.
+				// I'm sure that helps older browsers but it really confuses
+				// Safari 9 which is more my target market. So turned it off.
+				position: absolute;
+				content: '';
+				transition-property: margin, transform;
+				transition-duration: $hamburger-animation-duration;
+				transition-delay: $hamburger-animation-duration, 0s;
+			}
+
+			&::before { margin-top: -$hamburger-linewidth * 2 }
+			&::after { margin-top: $hamburger-linewidth * 2 }
+		}
+	}
 
 	nav {
 		@include media($mobile...) {
@@ -113,10 +139,10 @@ a {
 			opacity: 0;
 			visibility: hidden;
 			flex: 100%;
-			order: -1;
+			order: 10;
 
 			a {
-				border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+				border-top: 2px solid rgba(0, 0, 0, 0.2);
 				text-align: center;
 			}
 		}
@@ -133,15 +159,31 @@ a {
 		}
 	}
 
-	input[type="checkbox"]:checked ~ nav {
-		@include media($mobile...) {
-			// ((1rem*1.4 text + 1rem margin) + 2px margin) * 3 rows
-			// Using - - instead of + is a workaround for a yui-compressor
-			// issue, see https://github.com/yui/yuicompressor/issues/59
-			height: calc((2.4rem - -2px) * 3);
-			transform: translateY(0);
-			opacity: 1;
-			visibility: visible;
+	input[type="checkbox"] {
+		display: none;
+
+		&:checked ~ label span {
+			background-color: transparent;
+
+			&::before, &::after {
+				margin-top: 0;
+				transition-delay: 0s, $hamburger-animation-duration;
+			}
+
+			&::before { transform: rotate(45deg) }
+			&::after { transform: rotate(-45deg) }
+		}
+
+		&:checked ~ nav {
+			@include media($mobile...) {
+				// ((1rem*1.4 text + 1rem margin) + 2px margin) * 3 rows
+				// Using - - instead of + is a workaround for a yui-compressor
+				// issue, see https://github.com/yui/yuicompressor/issues/59
+				height: calc((2.4rem - -2px) * 3);
+				transform: translateY(0);
+				opacity: 1;
+				visibility: visible;
+			}
 		}
 	}
 
@@ -207,6 +249,7 @@ footer, .last-modified {
 	font-size: 0.8rem;
 
 	@include media('print') { display: none }
+	@include media($mobile...) { display: none }
 
 	a {
 		display: block;
