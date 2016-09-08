@@ -114,6 +114,7 @@ a {
 			transition-delay: $hamburger-animation-duration;
 
 			&::before, &::after {
+				// scss-lint:disable Comment
 				/* autoprefixer: off */
 				// turning autoprefixer off here because it adds another
 				// -webkit-transition-property with -webkit-transform.
@@ -259,6 +260,7 @@ footer, .last-modified {
 	}
 
 	li {
+		// scss-lint:disable SelectorDepth
 		// successively further indent smaller headers.
 		// this is kind of icky, need to find a cleaner way.
 		// h1 not in TOC. h2 has no indent.
@@ -291,7 +293,9 @@ footer, .last-modified {
 
 .md-preview { overflow-y: scroll }
 
+// scss-lint:disable ImportantRule, SelectorFormat
 // fix invisible ace scrollbar, not investigated yet.
+// and it's not my fault that Ace uses underscores either.
 .ace_scrollbar.ace_scrollbar-v { width: auto !important; }
 
 .message.under-construction {
@@ -308,7 +312,7 @@ footer, .last-modified {
 	@include media($mobile...) {
 		// save some space on mobile layout
 		.content { padding: 0.5rem }
-		i, img { display: none !important }
+		i, img { display: none }
 	}
 
 	.fa, p { opacity: 0.85 }
@@ -334,7 +338,7 @@ footer, .last-modified {
 		width: 100px;
 		height: auto;
 
-		margin-left: auto !important;
+		margin-left: auto;
 	}
 }
 

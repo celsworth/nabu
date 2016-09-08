@@ -7,7 +7,7 @@ linters:
   ColorVariable:
     enabled: false
   Comment:
-    enabled: false
+    enabled: true
   DeclarationOrder:
     enabled: true
   DuplicateProperty:
@@ -23,7 +23,7 @@ linters:
   IdSelector:
     enabled: false
   ImportantRule:
-    enabled: false
+    enabled: true
   ImportPath:
     enabled: true
   Indentation:
@@ -39,7 +39,7 @@ linters:
   NestingDepth:
     enabled: false
   PlaceholderInExtend:
-    enabled: false
+    enabled: true
   PropertyCount:
     enabled: true
   PropertySortOrder:
@@ -51,19 +51,19 @@ linters:
     enabled: true
     max_depth: 3
   SelectorFormat:
-    enabled: false
+    enabled: true
   Shorthand:
     enabled: true
   SingleLinePerProperty:
-    enabled: false
+    enabled: true
   SingleLinePerSelector:
     enabled: false
   SpaceAfterComma:
-    enabled: false
+    enabled: true
   SpaceAfterPropertyColon:
     enabled: true
   SpaceBeforeBrace:
-    enabled: false
+    enabled: true
   SpaceBetweenParens:
     enabled: true
   StringQuotes:
@@ -75,6 +75,6 @@ linters:
   UrlQuotes:
     enabled: true
   VendorPrefix:
-    enabled: false
+    enabled: true
   ZeroUnit:
     enabled: true
