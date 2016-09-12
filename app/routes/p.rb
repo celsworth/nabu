@@ -26,8 +26,7 @@ class Nabu
 			# it so they can view it. See how that logic goes..
 
 			r.is do
-				response.cache_control public: true, max_age: 86400
-				r.last_modified @pv.created_at
+				r.last_modified @pv&.created_at
 
 				# caching only active for guests; not admin
 				# using r.path as the cache key is for ngx_http_memcached_module
