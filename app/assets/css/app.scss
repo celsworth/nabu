@@ -384,7 +384,7 @@ a.label {
 	h1, h2, h3, h4, h5, h6 {
 		color: #446e9b;
 
-		@include media('print') { page-break-after: avoid }
+		@include media('print') { break-after: avoid-page }
 	}
 
 	h1 { font-size: 2rem }
@@ -436,9 +436,8 @@ a.label {
 	}
 
 	blockquote {
-		margin: 1rem;
-		//padding: 1px 0 1px 10px;
-		padding-left: 0.5rem;
+		margin: 1rem 2rem;
+		padding: 0.1rem 0 0.1rem 1rem;
 		border-left: 10px solid #ccc;
 		background: #f9f9f9;
 		color: #999;
@@ -490,7 +489,7 @@ a.label {
 		width: 100%;
 		border-collapse: collapse;
 
-		@include media('print') { page-break-inside: avoid }
+		@include media('print') { break-inside: avoid-page }
 
 		thead, tfoot { background: #f5f5f5 }
 
