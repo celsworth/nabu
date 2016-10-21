@@ -12,7 +12,10 @@
 		%link{href: '/dist/Font-Awesome-4.6.3/css/font-awesome.min.css', rel: 'stylesheet'}
 
 		= assets :css
+		= assets [:js, :loadjs]
 
+		:javascript
+			loadjs(#{assets_paths([:js, :app]).to_json}, 'app');
 
 	%body
 		%header.site-menu
@@ -72,10 +75,17 @@
 				= succeed '.' do
 					%a{href: '/p/projects.nabu'} Nabu
 
-
-		= assets [ :js, :jquery ]
-		= assets [ :js, :app ]
-
-		-# can use addLoadEvent() if I ever need more than this block
 		:javascript
-			window.onload = function(){ $('body').timeago() }
+			/* we keep this at the bottom of <body> so all the .js-timeago
+			 * elements are now in the DOM and can be manipulated */
+			loadjs.ready(['app'], {
+				success: function() {
+					var elements = document.getElementsByClassName('js-timeago');
+					var i;
+					for (i = 0 ; i < elements.length ; ++i) {
+						var e = elements[i];
+						var time = new Date(e.getAttribute('datetime'));
+						e.innerText = TimeAgo.inWords(time.getTime());
+					}
+				}
+			});

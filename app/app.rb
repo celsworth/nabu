@@ -27,9 +27,10 @@ class Nabu < Roda
 		css: %w( normalize.css app.scss coderay.css ),
 		css_compressor: :yui, # default, but being explicit..
 		js: {
+			loadjs: 'loadjs-3.0.0.js',
 			admin: 'markdown_table_formatter.js',
 			jquery: 'jquery-3.1.0.min.js',
-			app: 'smart-time-ago-0.1.5.js',
+			app: 'app.js',
 		},
 		js_compressor: :yui,
 

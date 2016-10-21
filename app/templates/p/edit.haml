@@ -25,49 +25,50 @@
 .preview-pane
 	.md-preview.md~ @pv&.render_html
 
--# on this page only, load jquery immediately, so I can setup the editor
--# without window.ready stuff. This page is for me only so I'm not worried
--# about performance here.
-= assets [ :js, :jquery ]
-
--# and the markdown table formatter, which is only used here anyway
-= assets [ :js, :admin ]
-
-%script{src: '/dist/ace-builds/src-min/ace.js', type: 'text/javascript'}
-
 :javascript
-	/* set height of editor and preview to window height */
-	$('.md-preview, #editor').height($(window).height() - 150);
+	// loadjs jquery done in layout template
 
-	$('#js-hidden-ta').hide();
+	// markdown table formatter
+	loadjs(#{assets_paths([:js, :admin]).to_json}, 'admin');
 
-	var editor = ace.edit("editor");
-	//editor.setTheme("ace/theme/monokai");
-	editor.getSession().setMode("ace/mode/markdown");
-	editor.getSession().setUseWrapMode(true);
-	editor.renderer.setShowGutter(false);
-	var updateTimeout;
-	editor.on('input', function(e) {
-		if (!updateTimeout) {
-			updateTimeout = setTimeout(function() {
+	loadjs('/dist/ace-builds/src-min/ace.js', 'ace');
+
+	loadjs.ready(['jquery', 'admin', 'ace'], {
+		success: function() {
+			/* set height of editor and preview to window height */
+			$('.md-preview, #editor').height($(window).height() - 300);
+
+			$('#js-hidden-ta').hide();
+
+			var editor = ace.edit("editor");
+			//editor.setTheme("ace/theme/monokai");
+			editor.getSession().setMode("ace/mode/markdown");
+			editor.getSession().setUseWrapMode(true);
+			editor.renderer.setShowGutter(false);
+			var updateTimeout;
+			editor.on('input', function(e) {
+				if (!updateTimeout) {
+					updateTimeout = setTimeout(function() {
+						$('#js-hidden-ta').val(editor.getSession().getValue());
+						$.ajax({
+							method: 'POST',
+							url: '/p/preview',
+							data: $('#js-edit-form').serialize()
+						});
+						updateTimeout = null;
+					}, 500);
+				}
+			});
+
+			// on save, copy editor contents into textarea for submission
+			$('#js-edit-form').submit(function() {
 				$('#js-hidden-ta').val(editor.getSession().getValue());
-				$.ajax({
-					method: 'POST',
-					url: '/p/preview',
-					data: $('#js-edit-form').serialize()
-				});
-				updateTimeout = null;
-			}, 500);
+			});
+
+			$('#js-format-table').click(function() {
+				var mtf = new MarkdownTableFormatter();
+				mtf.format_table(editor.getSelectedText());
+				editor.session.replace(editor.selection.getRange(), mtf.output_table);
+			});
 		}
-	});
-
-	// on save, copy editor contents into textarea for submission
-	$('#js-edit-form').submit(function() {
-		$('#js-hidden-ta').val(editor.getSession().getValue());
-	});
-
-	$('#js-format-table').click(function() {
-	    var mtf = new MarkdownTableFormatter();
-		mtf.format_table(editor.getSelectedText());
-		editor.session.replace(editor.selection.getRange(), mtf.output_table);
 	});
