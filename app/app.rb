@@ -45,6 +45,7 @@ class Nabu < Roda
 	request_delegate :logger # expose rack.logger as logger
 	plugin :environments
 	plugin :halt
+	plugin :head
 	plugin :multi_route
 	plugin :padrino_render,
 		engine: 'haml',
