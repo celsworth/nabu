@@ -42,6 +42,16 @@ a {
 		}
 	}
 
+	// red line-through on dead links, but not on printouts
+	@include media('screen') {
+		&[data-page-exists=false] {
+			color: #a00;
+			text-decoration: line-through;
+
+			&:hover { color: #700 }
+		}
+	}
+
 	&:hover { color: #1e70bf }
 }
 
@@ -393,13 +403,6 @@ a.label {
 	h4 { font-size: 1.1rem }
 	h5 { font-size: 1rem }
 	h6 { font-size: 1rem }
-
-	a[data-page-exists=false] {
-		color: #a00;
-		text-decoration: line-through;
-
-		&:hover { color: #700 }
-	}
 
 	.highlighter-coderay {
 		margin: 1rem;
