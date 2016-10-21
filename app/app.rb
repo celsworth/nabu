@@ -39,6 +39,7 @@ class Nabu < Roda
 				AutoprefixerRails.process(content, browsers: BROWSERLIST).css : content
 		end
 	}
+	plugin :assets_preloading
 	plugin :caching
 	plugin :csrf
 	plugin :delegate
@@ -77,6 +78,9 @@ class Nabu < Roda
 	route do |r|
 		r.assets
 		r.public
+
+		response.headers['Link'] = preload_assets_link_header :css, [:js, :app]
+		response.headers['Link'] += ",</dist/Font-Awesome-4.6.3/fonts/fontawesome-webfont.woff2?v=4.6.3>;rel=preload;as=font;type=font/woff2;crossorigin"
 
 		r.multi_route
 
