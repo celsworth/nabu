@@ -67,8 +67,8 @@ a {
 .site-menu { // header
 	margin-bottom: 1rem;
 	background: #446e9b linear-gradient(#6d94bf, #446e9b 50%, #3e648d) no-repeat;
-	//background: linear-gradient(#2a3a7e, #456bd9) no-repeat;
-	//background: #3e648d;
+
+	@include media('print') { display: none; }
 
 	.container {
 		display: flex;
