@@ -25,6 +25,12 @@ class CmsPage < Sequel::Model
 		end
 	end
 
+	class << self
+		def find_or_new(params)
+			self[params] || new(params)
+		end
+	end
+
 	def set_tags(new_tags)
 		old_tags = tags.map(&:name) # existing tags
 		new_tags = new_tags.map(&:strip) # remove leading/trailing spaces

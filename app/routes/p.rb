@@ -11,7 +11,7 @@ class Nabu
 
 		r.on :pagename do |pagename|
 
-			@page = CmsPage[name: pagename] || CmsPage.new(name: pagename)
+			@page = CmsPage.find_or_new(name: pagename)
 
 			@pv = if user.is_admin? && pv = r.params['pv']
 							# facility to view old versions for admin
