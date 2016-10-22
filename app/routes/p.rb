@@ -31,9 +31,10 @@ class Nabu
 				# caching only active for guests; not admin
 				# using r.path as the cache key is for ngx_http_memcached_module
 				# (even without using that, this doubles Nabu's throughput)
-				cache(r.path, cache: !user.is_admin?) do
+				# .. removed entirely for now, it was just annoying me
+				#cache(r.path, cache: !user.is_admin?) do
 					render 'p/view'
-				end
+				#end
 			end
 
 			# nothing else below this permitted for non-admin
