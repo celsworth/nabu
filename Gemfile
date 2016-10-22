@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'roda'
+# core
 gem 'unicorn'
 gem 'pry'
 gem 'rake'
 gem 'rack-unreloader', require: 'rack/unreloader'
 gem 'racksh'
-gem 'ansi'
 gem 'cae-logger', github: 'celsworth/cae-logger', require: 'cae/logger'
 
 group :development do
@@ -14,10 +13,12 @@ group :development do
 	gem 'binding_of_caller'
 end
 
+gem 'roda'
 gem 'sequel'
 gem 'pg'
 gem 'sequel_pg', require: 'sequel'
 gem 'bcrypt'
+gem 'ansi'
 gem 'rack_csrf'
 gem 'kramdown'
 gem 'dalli'

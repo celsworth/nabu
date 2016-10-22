@@ -26,7 +26,7 @@
 	.md-preview.md~ @pv&.render_html
 
 :javascript
-	// loadjs jquery done in layout template
+	loadjs(#{assets_paths([:js, :jquery]).to_json}, 'jquery');
 
 	// markdown table formatter
 	loadjs(#{assets_paths([:js, :admin]).to_json}, 'admin');
