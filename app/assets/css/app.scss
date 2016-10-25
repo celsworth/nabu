@@ -305,6 +305,14 @@ footer, .last-modified {
 
 .md-preview { overflow-y: scroll }
 
+.admin-buttons {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+
+	@include media('print') { display: none }
+}
+
 // scss-lint:disable ImportantRule, SelectorFormat
 // fix invisible ace scrollbar, not investigated yet.
 // and it's not my fault that Ace uses underscores either.
