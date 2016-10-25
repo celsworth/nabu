@@ -35,11 +35,13 @@ a {
 	@include media('print') {
 		color: #06c;
 
+		/* temporarily removed. think it makes CV look neater.
 		&[href^="http"]:after {
 			font-size: smaller;
 			font-style: italic;
 			content: ' <' attr(href) '>';
 		}
+		*/
 	}
 
 	// red line-through on dead links, but not on printouts
