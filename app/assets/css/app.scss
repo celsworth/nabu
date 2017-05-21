@@ -18,9 +18,9 @@ $hamburger-animation-duration: .2s;
 html {
 	color: #333;
 
-	// browser font size is normally 16px, x1.125 = 18px. 1.4 line height
+	// browser font size is normally 16px, x1.125 = 18px. 1.55 line height
 	// https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
-	font: 1.125rem/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	font: 1.125rem/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
 	// a saner font-size for printing, otherwise it looks huuuuuge
 	@include media('print') { font-size: 12pt }
@@ -458,7 +458,7 @@ a.label {
 	}
 
 	code, kbd, pre {
-		font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+		font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
 	}
 
 	pre {
@@ -467,16 +467,13 @@ a.label {
 
 	// inline styles
 	code, kbd {
-		padding: 0.2rem 0.5rem 0.1rem; // less on bottom than top, fools the eye
+		padding: 0.15rem 0.25rem;
 	}
 
 	code {
-		//border: 1px solid #e5e5e5;
-		//background-color: #f7f7f7;
-
-		border: 1px solid #e7a855;
-		background: #fee9cc;
-		color: #000;
+		border: 1px solid #e1e1e8;
+		background: #f9f2f4;
+		color: #d14;
 	}
 
 	kbd {
