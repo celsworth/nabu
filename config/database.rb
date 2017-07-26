@@ -26,8 +26,6 @@ DB.extension :pg_inet
 DB.extension :pg_json
 DB.extension :pg_range
 
-DB.optimize_model_load = true
-
 # this might be a win in the distant future when the schema barely ever changes
 #DB.extension :schema_caching
 #DB.load_schema_cache? File.expand_path(File.join(APP_ROOT, 'tmp', 'schema.cache'))
@@ -39,7 +37,6 @@ Sequel::Model.cache_associations = false if RACK_ENV == 'development'
 # be less bitchy in set()
 Sequel::Model.strict_param_setting = false
 
-Sequel::Model.plugin :schema
 Sequel::Model.plugin :validation_helpers
 # removed; doing validations manually for now.
 #Sequel::Model.plugin :auto_validations, not_null: :presence, unique_opts: {only_if_modified: true}
