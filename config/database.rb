@@ -7,24 +7,24 @@ if require 'bundler'
 	Bundler.setup(:default, RACK_ENV)
 end
 
+require 'yaml'
 require 'sequel'
 
 Sequel.extension :migration
 Sequel.extension :pg_inet_ops
 
+DB_CONFIG = YAML.safe_load(File.read(APP_ROOT + '/config/database.yaml'))[RACK_ENV]
+
 # Master +Sequel::Database+ object. All models inherit this.
-DB = Sequel.connect adapter: 'postgres',
-	hostname: 'localhost', database: 'nabu',
-	username: 'nabu', password: 'nabu',
-	max_connections: 50
+DB = Sequel.connect(DB_CONFIG)
 
 DB.extension :null_dataset
 DB.extension :pagination
 
-DB.extension :pg_enum
-DB.extension :pg_inet
-DB.extension :pg_json
-DB.extension :pg_range
+#DB.extension :pg_enum
+#DB.extension :pg_inet
+#DB.extension :pg_json
+#DB.extension :pg_range
 
 # this might be a win in the distant future when the schema barely ever changes
 #DB.extension :schema_caching

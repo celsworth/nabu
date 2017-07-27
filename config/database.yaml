@@ -1,0 +1,14 @@
+production:
+  adapter: postgres
+  hostname: localhost
+  database: nabu
+  username: nabu
+  password: nabu
+  max_connections: 50
+development:
+  adapter: postgres
+  hostname: localhost
+  database: nabu
+  username: nabu
+  password: nabu
+  max_connections: 50
