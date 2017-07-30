@@ -1,10 +1,6 @@
 @import 'include-media';
 
-$breakpoints: (
-	tablet: 768px,
-	desktop: 1200px,
-	huge: 2000px
-);
+$breakpoints: (tablet: 768px, desktop: 1200px, huge: 2000px);
 $mobile: 'screen', '<tablet';
 $tablet: 'screen', '>=tablet', '<desktop';
 $desktop: 'screen', '>=desktop';
@@ -41,7 +37,7 @@ a {
 			font-style: italic;
 			content: ' <' attr(href) '>';
 		}
-		*/
+		 */
 	}
 
 	// red line-through on dead links, but not on printouts
@@ -68,7 +64,8 @@ a {
 
 .site-menu { // header
 	margin-bottom: 1rem;
-	background: #446e9b linear-gradient(#6d94bf, #446e9b 50%, #3e648d) no-repeat;
+	//background: #446e9b linear-gradient(#6d94bf, #446e9b 50%, #3e648d) no-repeat;
+	background: #2574a9;
 
 	@include media('print') { display: none; }
 
@@ -89,7 +86,7 @@ a {
 		display: block;
 		padding: 0.5rem 1.5rem;
 		transition: color 0.2s ease;
-		color: rgba(255, 255, 255, 0.8);
+		color: rgba(255, 255, 255, 0.9);
 		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 
 		@include media($notmobile...) {
@@ -211,7 +208,7 @@ a {
 	i {
 		position: absolute;
 		top: 50%;
-		left: 0.3rem;
+		right: 0.4rem;
 		transform: perspective(1px) translateY(-50%);
 		opacity: 0.5;
 	}
@@ -219,10 +216,11 @@ a {
 	input, input::placeholder { transition: all 0.2s ease; }
 
 	input {
-		padding: 0.3rem 1rem 0.3rem 1.5rem;
+		padding: 0.3rem 1.5rem 0.3rem 0.3rem;
 
-		border: 1px solid rgba(34, 36, 38, .15);
-		border-radius: 0.4rem;
+		//border: 1px solid rgba(34, 36, 38, .15);
+		border: 0;
+		border-radius: 0.3rem;
 
 		outline: 0;
 		background: rgba(255, 255, 255, 0.9);
