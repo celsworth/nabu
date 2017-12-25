@@ -29,7 +29,7 @@ class Nabu < Roda
                   js: {
                     loadjs: 'loadjs-3.0.0.js',
                     admin: 'markdown_table_formatter.js',
-                    jquery: 'jquery-3.1.0.min.js',
+                    jquery: 'jquery-3.2.1.min.js',
                     app: 'app.js'
                   },
                   js_compressor: :yui,
