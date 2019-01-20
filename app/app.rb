@@ -14,7 +14,7 @@ class Nabu < Roda
     '>0.5%',
 
     # its so bad on IE9 and below its not even worth trying.
-    'IE >= 10', 'not IE < 10',
+    'IE >= 10', 'not IE < 10'
 
     # these were an alternative way to avoid the -webkit-transition-property
     # problem (see app.scss). But they remove a large subset of browsers
@@ -34,10 +34,13 @@ class Nabu < Roda
                   },
                   js_compressor: :yui,
 
-                  postprocessor: ->(_file, type, content) do
-                                   type == :css ?
-                                     AutoprefixerRails.process(content, browsers: BROWSERLIST).css : content
-                                 end
+                  postprocessor: lambda do |_file, type, content|
+                    if type == :css
+                      AutoprefixerRails.process(content, browsers: BROWSERLIST).css
+                    else
+                      content
+                    end
+                  end
   plugin :assets_preloading
   plugin :caching
   plugin :csrf
@@ -49,7 +52,7 @@ class Nabu < Roda
   plugin :multi_route
   plugin :padrino_render,
          engine: 'haml',
-         views:  'app/templates', layout: 'layouts/application'
+         views: 'app/templates', layout: 'layouts/application'
   plugin :public
   plugin :status_handler
 
