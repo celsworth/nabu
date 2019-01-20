@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'kramdown'
+require 'kramdown/parser/gfm'
+require 'kramdown-syntax-coderay'
 
 module Kramdown
   module Converter

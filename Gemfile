@@ -30,10 +30,11 @@ gem 'diffy'
 gem 'haml'
 gem 'kgio' # performance boost for dalli
 gem 'kramdown'
+gem 'kramdown-parser-gfm'
+gem 'kramdown-syntax-coderay'
+gem 'mini_racer' # for autoprefixer
 gem 'rack_csrf'
 gem 'roda'
 gem 'rubocop'
-gem 'sass'
-gem 'scss-lint'
-gem 'therubyracer' # for autoprefixer
+gem 'sassc'
 gem 'yuicompressor'
