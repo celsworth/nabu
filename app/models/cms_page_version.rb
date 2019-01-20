@@ -30,7 +30,7 @@ class CmsPageVersion < Sequel::Model
 
   def render_text
     # FIXME: Be a little less stupid here.
-    html = render_html.gsub(/<[^>]+>/, ' ')
+    render_html.gsub(/<[^>]+>/, ' ')
   end
 
   def validate
@@ -45,25 +45,26 @@ class CmsPageVersion < Sequel::Model
   end
 
   def publish!
-    unless published?
-      db.transaction do
-        return if page.lock!.published_id == id
-        update(published_at: Time.new)
-        page.update(published_id: id)
-      end
+    return if published?
+
+    db.transaction do
+      return if page.lock!.published_id == id
+
+      update(published_at: Time.new)
+      page.update(published_id: id)
     end
   end
 
   def unpublish!
-    if published?
-      db.transaction do
-        update(published_at: nil)
-        reload
-        if page.lock!.published_id == id
-          latest = page.published_dataset.first
-          latest &&= latest.id
-          page.update(published_id: latest)
-        end
+    return unless published?
+
+    db.transaction do
+      update(published_at: nil)
+      reload
+      if page.lock!.published_id == id
+        latest = page.published_dataset.first
+        latest &&= latest.id
+        page.update(published_id: latest)
       end
     end
   end
