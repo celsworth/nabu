@@ -34,13 +34,13 @@ class Nabu < Roda
                   },
                   js_compressor: :yui,
 
-                  postprocessor: lambda do |_file, type, content|
+                  postprocessor: (lambda do |_file, type, content|
                     if type == :css
                       AutoprefixerRails.process(content, browsers: BROWSERLIST).css
                     else
                       content
                     end
-                  end
+                  end)
   plugin :assets_preloading
   plugin :caching
   plugin :csrf
